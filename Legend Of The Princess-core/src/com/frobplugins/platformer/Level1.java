@@ -190,20 +190,20 @@ private void updateKoala (float deltaTime) {
 					 break;
 				 }else{
 					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
 				 }
 				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
 					 break;
 				 }else{
 					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
 				 }
 				 //bottom left
 				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
 					 break;
 				 }else{
 					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
 				 }
 			 }
 			 
@@ -235,9 +235,11 @@ private void updateKoala (float deltaTime) {
 	 if(collisionX){
 		 koala.position.x = oldX;
 		 koala.velocity.x = 0;
+		 koala.position.add(koala.velocity);
 	 }if(collisionY){
 		 koala.position.y = oldY;
 		 koala.velocity.y = 0;
+		 koala.position.add(koala.velocity);
 	 }
 	 koala.position.add(koala.velocity);
 	 koala.velocity.scl(1 / deltaTime);
