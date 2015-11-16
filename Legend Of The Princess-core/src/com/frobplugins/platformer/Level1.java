@@ -26,6 +26,9 @@ public class Level1 implements Screen {
 	static float MAX_VELOCITY = 10f;
 	static float JUMP_VELOCITY = 40f;
 	static float DAMPING = 0.87f;
+	
+	private boolean collisionX = false;
+	private boolean collisionY = false;
 
 	enum State {
 		Standing, Walking, Jumping
@@ -123,7 +126,7 @@ private void updateKoala (float deltaTime) {
 		koala.velocity.x = Math.signum(koala.velocity.x) * koala.MAX_VELOCITY;
 	}
 
-	// clamp the velocity to 0 if it's < 1, and set the state to standign
+	// clamp the velocity to 0 if it's < 1, and set the state to standing
 	if (Math.abs(koala.velocity.x) < 1) {
 		koala.velocity.x = 0;
 		if (koala.grounded) koala.state = State.Standing;
@@ -133,33 +136,112 @@ private void updateKoala (float deltaTime) {
 	// in this frame
 	koala.velocity.scl(deltaTime);
 	
-	 TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get("Tilelaag 1");
-	 
-	 for(int x=0;x<collisionLayer.getWidth();x++){
-		 for(int y=0;y<collisionLayer.getHeight();y++){
-			 Cell cell = collisionLayer.getCell(x, y);
-			 if(cell == null && cell.getTile() == null){
-				 System.out.println("no tiles found");
-			 }else{
-				 Rectangle rectangle = new Rectangle(x * collisionLayer.getTileWidth(), y * collisionLayer.getTileHeight(), 64, 64);
-				 if(koalaRect.overlaps(rectangle)){
-					 System.out.println("collision");
-				 }
-			 }
-		 }
-	 }
-	
 	// unscale the velocity by the inverse delta time and set
 	// the latest position
-	koala.position.add(koala.velocity);
-	koala.velocity.scl(1 / deltaTime);
 
 	// Apply damping to the velocity on the x-axis so we don't
 	// walk infinitely once a key was pressed
 	koala.velocity.x *= koala.DAMPING;
 	koala.WIDTH = 64;
 	koala.HEIGHT = 128;
-
+	float oldX = koala.position.x;
+	float oldY = koala.position.y;
+	 TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get("Grass");
+	 for(int x=0;x<collisionLayer.getWidth();x++){
+		 for(int y=0;y<collisionLayer.getHeight();y++){
+			 if(koala.velocity.x < 0){
+				 //top left
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + HEIGHT) / 64)) == null){
+					 break;
+				 }else{
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + HEIGHT) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //middle left
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //bottom left
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+			 }
+			 
+			 if(koala.velocity.x > 0){
+				//top left
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + HEIGHT) / 64)) == null){
+					 break;
+				 }else{
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + HEIGHT) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //middle left
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //bottom left
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+			 }
+			 
+			 if(koala.velocity.y < 0){
+				 //bottom left
+				 if(collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 collisionY = collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
+				 }
+				 //middle bottom
+				 if(collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionY == false)
+					 collisionY = collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
+				 }
+				 //bottom right
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionY == false)
+					 collisionY = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
+				 }
+			 }
+		 }
+	 }
+	 
+	 if(collisionX){
+		 koala.position.x = oldX;
+		 koala.velocity.x = 0;
+	 }if(collisionY){
+		 koala.position.y = oldY;
+		 koala.velocity.y = 0;
+	 }
+	 koala.position.add(koala.velocity);
+	 koala.velocity.scl(1 / deltaTime);
+	 System.out.println(collisionX);
 }
 
 private void renderKoala (float deltaTime) {
