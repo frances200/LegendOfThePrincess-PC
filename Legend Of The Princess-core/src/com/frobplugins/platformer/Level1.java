@@ -241,7 +241,7 @@ private void updateKoala (float deltaTime) {
 	 }
 	 koala.position.add(koala.velocity);
 	 koala.velocity.scl(1 / deltaTime);
-	 System.out.println(collisionX);
+	 System.out.println("x: " + collisionX + " " + "y: " + collisionY);
 }
 
 private void renderKoala (float deltaTime) {
