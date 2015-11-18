@@ -1,0 +1,273 @@
+package com.frobplugins.platformer;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+
+/**
+ * Created by Gebruiker on 29-10-2015.
+ */
+public class LevelScreen implements Screen {
+
+	static float WIDTH;
+	static float HEIGHT;
+	static float DAMPING = 0.87f;
+	
+	private boolean collisionX = false;
+	private boolean collisionY = false;
+
+	final Vector2 position = new Vector2();
+	final Vector2 velocity = new Vector2();
+	
+	float stateTime = 0;
+	boolean facesRight = true;
+	boolean grounded = false;
+	
+	public boolean isWalkingDown = false;
+
+private TiledMap map;
+private OrthogonalTiledMapRenderer renderer;
+private OrthographicCamera camera;
+private Texture koalaTexture;
+private Animation stand;
+private Animation walk;
+private Animation jump;
+private Level1 koala;
+private Rectangle koalaRect;
+
+private static final float GRAVITY = -2.5f;
+
+@Override
+public void show () {
+	koalaTexture = new Texture("player.png");
+	map = new TmxMapLoader().load("maps/Level1.tmx");
+	renderer = new OrthogonalTiledMapRenderer(map);
+	camera = new OrthographicCamera();
+	camera.setToOrtho(false, 320, 240);
+	camera.update();
+	koala = new Level1();
+	koala.position.set(11 * 64, 50 * 64);
+	koalaRect = new Rectangle(koala.position.x, koala.position.y, 64, 128);
+}
+
+@Override
+public void render (float delta) {
+	// clear the screen
+	Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
+	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	// get the delta time
+	float deltaTime = Gdx.graphics.getDeltaTime();
+
+	// update the koala (process input, collision detection, position update)
+	updateKoala(deltaTime);
+
+	// let the camera follow the koala, x-axis only
+	koalaRect.x = koala.position.x;
+	koalaRect.y = koala.position.y;
+	camera.position.x = koalaRect.x + koalaRect.width/2;
+	camera.position.y = koalaRect.y + koalaRect.height/2;
+	camera.update();
+
+	// set the tile map rendere view based on what the
+	// camera sees and render the map
+	renderer.setView(camera);
+	renderer.render();
+
+	// render the koala
+	renderKoala(deltaTime);
+	//System.out.println(koala.position.x + " " + koala.position.y);
+	KoalaWalkDownTest();
+}
+
+private Vector2 tmp = new Vector2();
+
+private void updateKoala (float deltaTime) {
+	koala.stateTime += deltaTime;
+
+	// check input and apply to velocity & state
+	if ((Gdx.input.isKeyPressed(Keys.SPACE)) && koala.grounded) {
+		koala.grounded = false;
+	}
+	
+	if (Gdx.input.isKeyPressed(Keys.DOWN) || Gdx.input.isKeyPressed(Keys.S)) {
+		isWalkingDown=true;
+	} else {
+		isWalkingDown=false;
+	}
+	
+	if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.W)) {
+		
+	}
+
+	if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
+		koala.facesRight = false;
+	}
+
+	if (Gdx.input.isKeyPressed(Keys.RIGHT) || Gdx.input.isKeyPressed(Keys.D)) {
+		koala.facesRight = true;
+	}
+	// Apply damping to the velocity on the x-axis so we don't
+	// walk infinitely once a key was pressed
+	koala.velocity.x *= koala.DAMPING;
+	koala.WIDTH = 64;
+	koala.HEIGHT = 128;
+	float oldX = koala.position.x;
+	float oldY = koala.position.y;
+	 TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get("Grass");
+	 for(int x=0;x<collisionLayer.getWidth();x++){
+		 for(int y=0;y<collisionLayer.getHeight();y++){
+			 if(koala.velocity.x < 0){
+				 //top left
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + HEIGHT) / 64)) == null){
+					 break;
+				 }else{
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + HEIGHT) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //middle left
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //bottom left
+				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+			 }
+			 
+			 if(koala.velocity.x > 0){
+				//top left
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + HEIGHT) / 64)) == null){
+					 break;
+				 }else{
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + HEIGHT) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //middle left
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+				 //bottom left
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionX == false)
+					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
+				 }
+			 }
+			 
+			 if(koala.velocity.y < 0){
+				 //bottom left
+				 if(collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 collisionY = collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
+				 }
+				 //middle bottom
+				 if(collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionY == false)
+					 collisionY = collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
+				 }
+				 //bottom right
+				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
+					 break;
+				 }else{
+					 if(collisionY == false)
+					 collisionY = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
+				 }
+			 }
+		 }
+	 }
+	 
+	 if(collisionX){
+		 koala.position.x = oldX;
+		 koala.velocity.x = 0;
+		 koala.position.add(koala.velocity);
+	 }if(collisionY){
+		 koala.position.y = oldY;
+		 koala.velocity.y = 0;
+		 koala.position.add(koala.velocity);
+	 }
+	 koala.position.add(koala.velocity);
+	 koala.velocity.scl(1 / deltaTime);
+	 //System.out.println("x: " + collisionX + " " + "y: " + collisionY);
+	 System.out.println(koala.position.y);
+}
+
+private void renderKoala (float deltaTime) {
+
+	// draw the koala, depending on the current velocity
+	// on the x-axis, draw the koala facing either right
+	// or left
+	renderer.getBatch().begin();
+		renderer.getBatch().draw(koalaTexture, koala.position.x, koala.position.y, WIDTH, HEIGHT);
+	renderer.getBatch().end();
+}
+
+public void KoalaWalkDownTest () {
+	if(isWalkingDown){
+		koala.position.y-=1;
+		System.out.println("isWalkingDown");
+	}
+}
+
+@Override
+public void dispose () {
+}
+
+@Override
+public void resize(int width, int height) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void pause() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void resume() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void hide() {
+	// TODO Auto-generated method stub
+	
+}
+}
