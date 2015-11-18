@@ -119,6 +119,7 @@ public class Player extends Sprite{
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.W)){
+        	System.out.println("SAVE HEM");
             if(canJump) {
                 velocity.y = 150 * delta;
                 canJump = false;
