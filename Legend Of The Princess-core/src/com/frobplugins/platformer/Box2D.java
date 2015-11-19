@@ -1,130 +1,142 @@
 package com.frobplugins.platformer;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.MapObjects;
-import com.badlogic.gdx.maps.objects.CircleMapObject;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
-import com.badlogic.gdx.maps.objects.PolylineMapObject;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.maps.objects.TextureMapObject;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class Box2D implements Screen {
+public class Box2D implements Screen,InputProcessor{
 	World world = new World(new Vector2(0, -10), true);
 	private Box2DDebugRenderer b2dr;
 	private OrthographicCamera camera;
-	private OrthographicCamera hudCam;
-	public float PPM = 100;
-	private OrthographicCamera b2dCam;
+	private OrthographicCamera cam;
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
-	private float tileSize = 64;
-
+	float tileSize = 64;
+	private Body player;
+	Texture playerTexture;
+	private float torque = 0;
+	private float PPM = 100;
+	
 	@Override
 	public void show() {
+		Gdx.input.setInputProcessor(this);
 		b2dr = new Box2DDebugRenderer();
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 640, 640);
-		hudCam = new OrthographicCamera();
-		hudCam.setToOrtho(false, 640, 640);
-		camera.position.set(new Vector2(1 * tileSize, 10 * tileSize), 0);
-		camera.update();
-		
-		//create platform
+		camera.setToOrtho(false, 640 / PPM, 640 / PPM);
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, 640, 640);
 		BodyDef bdef = new BodyDef();
-		bdef.position.set(160 / PPM, 120 / PPM);
-		bdef.type = BodyType.StaticBody;
-		Body body = world.createBody(bdef);
+		FixtureDef fdef = new FixtureDef();
+		
+		bdef.position.set(new Vector2(2.4f * tileSize / PPM, 22 * tileSize / PPM));
+		bdef.type = BodyType.DynamicBody;
+		player = world.createBody(bdef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(50 / PPM, 5 / PPM);
-		
-		FixtureDef fdef = new FixtureDef();
+		shape.setAsBox(32 / PPM, 64 / PPM);
 		fdef.shape = shape;
-		body.createFixture(fdef);
-		
-		//create falling box
-		bdef.position.set(160 / PPM, 200 / PPM);
-		bdef.type = BodyType.DynamicBody;
-		body = world.createBody(bdef);
-		
-		shape.setAsBox(5 / PPM, 5 / PPM);
-		fdef.shape = shape;
-		body.createFixture(fdef);
-	
-		//Set up B2D camera
-		b2dCam = new OrthographicCamera();
-		b2dCam.setToOrtho(false, 640 / PPM, 640 / PPM);
+		player.createFixture(fdef);
 		
 		//////////////////////////////////////////
 		map = new TmxMapLoader().load("maps/Level1.tmx");
 		tmr = new OrthogonalTiledMapRenderer(map);
-		TiledMapTileLayer layer = 
-				(TiledMapTileLayer) map.getLayers().get("Grass");
+		
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Grass");
+		tileSize = layer.getTileWidth();
 		for(int row=0;row<layer.getHeight();row++){
 			for(int col=0;col<layer.getWidth();col++){
-				
 				Cell cell = layer.getCell(col, row);
-				if(!(cell == null) && !(cell.getTile() == null)){
-					
-					bdef.type = BodyType.StaticBody;
-					bdef.position.set(
-							(col + 0.5f) * tileSize / PPM,
-							(row + 0.5f) * tileSize / PPM
-					);
-					
-					ChainShape cs = new ChainShape();
-					Vector2[] v = new Vector2[3];
-					v[0] = new Vector2(-tileSize / 2 / PPM, -tileSize / 2 / PPM);
-					v[1] = new Vector2(-tileSize / 2 / PPM, tileSize / 2 / PPM);
-					v[2] = new Vector2(tileSize / 2 / PPM, tileSize / 2 / PPM);
-					cs.createChain(v);
-					fdef.friction = 0;
-					fdef.shape = cs;
-					fdef.isSensor = false;
-					world.createBody(bdef).createFixture(fdef);
-				}else{
-					System.out.println("air blocks found");
-					break;
+				
+				if(cell == null) {
+					System.out.println("found air blocks");
+					continue;
 				}
+				if(cell.getTile() == null){
+					System.out.println("found air blocks");
+					continue;
+				}
+				bdef.type = BodyType.StaticBody;
+				bdef.position.set((col + 0.5f) * tileSize / PPM,
+								  (row + 0.5f) * tileSize / PPM); 
+				ChainShape cs = new ChainShape();
+				Vector2[] v = new Vector2[3];
+				v[0] = new Vector2(-tileSize / 2 / PPM, -tileSize / 2 / PPM);
+				v[1] = new Vector2(-tileSize / 2 / PPM, tileSize / 2 / PPM);
+				v[2] = new Vector2(tileSize / 2 / PPM, tileSize / 2 / PPM);
+				cs.createChain(v);
+				fdef.friction = 0;
+				fdef.shape = cs;
+				fdef.isSensor = false;
+				world.createBody(bdef).createFixture(fdef);
 			}
 		}
+		
+		playerTexture = new Texture(Gdx.files.internal("player.png"));
 	}
 
 	@Override
 	public void render(float delta) {
+		player.applyTorque(torque ,true);
 		update(delta);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
-		tmr.setView(camera);
+		camera.position.set(new Vector2(player.getPosition().x, player.getPosition().y), 0);
+		float bgX = camera.position.x - 320;
+		float bgY = camera.position.y - 320;
+		camera.update();
+		cam.position.x = camera.position.x;
+		cam.position.y = camera.position.y;
+		
+		tmr.getBatch().begin();
+			tmr.getBatch().draw(Assets.bg, bgX, bgY);
+		tmr.getBatch().end();
+		cam.update();
+		tmr.setView(cam);
 		tmr.render();
 		
-		b2dr.render(world, b2dCam.combined);
+		tmr.getBatch().begin();
+			tmr.getBatch().draw(playerTexture, player.getPosition().x - 32, player.getPosition().y - 64);
+		tmr.getBatch().end();
+		
+		b2dr.render(world, camera.combined);
+		
+		if(Gdx.input.isKeyPressed(Keys.A)) {
+			player.applyLinearImpulse(-14f, 0, player.getPosition().x, player.getPosition().y, false);
+		}
+		if(Gdx.input.isKeyPressed(Keys.D)) {
+			player.applyLinearImpulse(7f, 0, player.getPosition().x, player.getPosition().y, false);
+		}
+		if(Gdx.input.isKeyJustPressed(Keys.W)) {
+			player.applyForceToCenter(new Vector2(0, 1000), true);
+		}
+		if(!Gdx.input.isKeyJustPressed(Keys.A) && !Gdx.input.isKeyPressed(Keys.D)){
+			player.setLinearVelocity(player.getLinearVelocity().x * 0.9f, player.getLinearVelocity().y);
+		}
+
 	}
 	
 	public void update(float delta){
-		world.step(delta, 6, 2);
+		world.step(delta, 1, 1);
 	}
 
 
@@ -156,6 +168,62 @@ public class Box2D implements Screen {
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean keyDown(int arg0) {
+		if(arg0 == Input.Keys.RIGHT) 
+            player.setLinearVelocity(10f, 0f);
+        if(arg0 == Input.Keys.LEFT)
+        	player.setLinearVelocity(-10f,0f);
+
+        if(arg0 == Input.Keys.UP)
+        	player.applyForceToCenter(0f,100f,true);
+        if(arg0 == Input.Keys.DOWN)
+        	player.applyForceToCenter(0f, -100f, true);
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return false;
 	} 
 	
 	

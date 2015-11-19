@@ -4,17 +4,21 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="src" path="/Legend Of The Princess-core"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/ashley-1.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/box2dlights-1.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-ai-1.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-backend-android-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-box2d-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-bullet-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-controllers-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-controllers-android-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/menu voor frances/Project/Android/gdx-freetype-1.7.0.jar"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/ashley-1.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/box2dlights-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-ai-1.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-backend-android-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-box2d-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-bullet-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-controllers-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-controllers-android-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/gdx-freetype-1.7.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/Dermetfan.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/dermetfan-libgdx-utils-d76d37146200.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/libgdx-utils-box2d-0.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/libgdx-utils-box2d-0.4.0-sources.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
