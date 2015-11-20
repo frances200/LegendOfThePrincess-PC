@@ -24,7 +24,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Box2D implements Screen,InputProcessor{
-	World world = new World(new Vector2(0, -10), true);
+	World world = new World(new Vector2(0, 0), true);
 	private Box2DDebugRenderer b2dr;
 	private OrthographicCamera camera;
 	private OrthographicCamera cam;
@@ -40,23 +40,23 @@ public class Box2D implements Screen,InputProcessor{
 	public void show() {
 		Gdx.input.setInputProcessor(this);
 		b2dr = new Box2DDebugRenderer();
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 640 / PPM, 640 / PPM);
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 640, 640);
 		BodyDef bdef = new BodyDef();
 		FixtureDef fdef = new FixtureDef();
 		
-		bdef.position.set(new Vector2(2.4f * tileSize / PPM, 22 * tileSize / PPM));
+		bdef.position.set(2.4f * tileSize / PPM, 22 * tileSize / PPM);
 		bdef.type = BodyType.DynamicBody;
 		player = world.createBody(bdef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(32 / PPM, 64 / PPM);
+		shape.setAsBox(32 , 64 );
 		fdef.shape = shape;
 		player.createFixture(fdef);
 		
 		//////////////////////////////////////////
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 640 , 640);
 		map = new TmxMapLoader().load("maps/Level1.tmx");
 		tmr = new OrthogonalTiledMapRenderer(map);
 		
@@ -75,13 +75,13 @@ public class Box2D implements Screen,InputProcessor{
 					continue;
 				}
 				bdef.type = BodyType.StaticBody;
-				bdef.position.set((col + 0.5f) * tileSize / PPM,
-								  (row + 0.5f) * tileSize / PPM); 
+				bdef.position.set((col + 0.5f) * tileSize / PPM ,
+								  (row + 0.5f) * tileSize / PPM ); 
 				ChainShape cs = new ChainShape();
 				Vector2[] v = new Vector2[3];
-				v[0] = new Vector2(-tileSize / 2 / PPM, -tileSize / 2 / PPM);
-				v[1] = new Vector2(-tileSize / 2 / PPM, tileSize / 2 / PPM);
-				v[2] = new Vector2(tileSize / 2 / PPM, tileSize / 2 / PPM);
+				v[0] = new Vector2(-tileSize / 2 / PPM, -tileSize / 2 / PPM );
+				v[1] = new Vector2(-tileSize / 2 / PPM, tileSize / 2 / PPM );
+				v[2] = new Vector2(tileSize / 2 / PPM, tileSize / 2 / PPM );
 				cs.createChain(v);
 				fdef.friction = 0;
 				fdef.shape = cs;
@@ -95,15 +95,12 @@ public class Box2D implements Screen,InputProcessor{
 
 	@Override
 	public void render(float delta) {
-		player.applyTorque(torque ,true);
 		update(delta);
-		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		camera.position.set(new Vector2(player.getPosition().x, player.getPosition().y), 0);
 		float bgX = camera.position.x - 320;
 		float bgY = camera.position.y - 320;
-		camera.update();
 		cam.position.x = camera.position.x;
 		cam.position.y = camera.position.y;
 		
@@ -119,20 +116,6 @@ public class Box2D implements Screen,InputProcessor{
 		tmr.getBatch().end();
 		
 		b2dr.render(world, camera.combined);
-		
-		if(Gdx.input.isKeyPressed(Keys.A)) {
-			player.applyLinearImpulse(-14f, 0, player.getPosition().x, player.getPosition().y, false);
-		}
-		if(Gdx.input.isKeyPressed(Keys.D)) {
-			player.applyLinearImpulse(7f, 0, player.getPosition().x, player.getPosition().y, false);
-		}
-		if(Gdx.input.isKeyJustPressed(Keys.W)) {
-			player.applyForceToCenter(new Vector2(0, 1000), true);
-		}
-		if(!Gdx.input.isKeyJustPressed(Keys.A) && !Gdx.input.isKeyPressed(Keys.D)){
-			player.setLinearVelocity(player.getLinearVelocity().x * 0.9f, player.getLinearVelocity().y);
-		}
-
 	}
 	
 	public void update(float delta){
