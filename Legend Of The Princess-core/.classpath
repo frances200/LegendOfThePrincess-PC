@@ -2,17 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/ashley-1.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/box2dlights-1.4.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/gdx-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/gdx-ai-1.6.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/gdx-box2d-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/gdx-bullet-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/gdx-controllers-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Core/gdx-freetype-1.7.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/Dermetfan.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/dermetfan-libgdx-utils-d76d37146200.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/libgdx-utils-box2d-0.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/libgdx-utils-box2d-0.4.0-sources.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/ashley-1.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/box2dlights-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-ai-1.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-box2d-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-bullet-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-controllers-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-freetype-1.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

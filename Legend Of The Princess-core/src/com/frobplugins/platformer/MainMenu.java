@@ -72,7 +72,7 @@ public class MainMenu implements Screen {
         if(Gdx.input.justTouched()){
             if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
                     && Gdx.input.getY() >= 310 && Gdx.input.getY() <= 400){
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Box2D());
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
             }
         }
     }

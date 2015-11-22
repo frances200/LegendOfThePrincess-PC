@@ -28,9 +28,5 @@
 	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-platform-2.9.2-natives-linux.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-platform-2.9.2-natives-osx.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-platform-2.9.2-natives-windows.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/Dermetfan.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/dermetfan-libgdx-utils-d76d37146200.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/libgdx-utils-box2d-0.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Android/libgdx-utils-box2d-0.4.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -119,6 +119,7 @@ public class Box2D implements Screen,InputProcessor{
 		tmr.getBatch().end();
 		
 		b2dr.render(world, camera.combined);
+		player.setLinearVelocity(0, -1000);
 	}
 	
 	public void update(float delta){

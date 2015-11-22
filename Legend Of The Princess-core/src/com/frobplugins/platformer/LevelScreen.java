@@ -1,273 +1,317 @@
 package com.frobplugins.platformer;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 
-/**
- * Created by Gebruiker on 29-10-2015.
- */
-public class LevelScreen implements Screen {
-
-	static float WIDTH;
-	static float HEIGHT;
-	static float DAMPING = 0.87f;
+public class LevelScreen implements Screen,InputProcessor{
+	World world = new World(new Vector2(0, 0), true);
+	private Box2DDebugRenderer b2dr;
+	private OrthographicCamera camera;
+	private OrthographicCamera cam;
+	private TiledMap map;
+	private OrthogonalTiledMapRenderer tmr;
+	float tileSize = 32;
+	private Body player;
+	private Body collisionLayer;
+	private Body level1Collider;
+	Texture playerTexture;
+	Sprite sprite;
+	private float torque = 0;
+	private float PPM = 100;
+	boolean enableLevel1 = false;
+	Texture loadLevel1;
+	Sprite sprite1;
 	
-	private boolean collisionX = false;
-	private boolean collisionY = false;
+	@Override
+	public void show() {
+		Gdx.input.setInputProcessor(this);
+		b2dr = new Box2DDebugRenderer();
+		cam = new OrthographicCamera();
+		cam.setToOrtho(false, 640, 640);
+		createCollisionListener();
+		BodyDef bdef = new BodyDef();
+		FixtureDef fdef = new FixtureDef();
+		
+		bdef.position.set(37.5f * tileSize , 61.5f * tileSize );
+		bdef.type = BodyType.DynamicBody;
+		player = world.createBody(bdef);
+		
+		PolygonShape shape = new PolygonShape();
+		PolygonShape sjeep = new PolygonShape();
+		sjeep.setAsBox(16, 16);
+		shape.setAsBox(15, 15);
+		fdef.shape = shape;
+		player.createFixture(fdef);
+		playerTexture = new Texture(Gdx.files.internal("PlayerHead.png"));
+		sprite = new Sprite(playerTexture);
+		loadLevel1 = new Texture(Gdx.files.internal("LevelScreen/loadLevel1.png"));
+		sprite1 = new Sprite(loadLevel1);
+		
+		//////////////////////////////////////////
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, 640, 640);
+		map = new TmxMapLoader().load("LevelScreen/Level1.tmx");
+		tmr = new OrthogonalTiledMapRenderer(map);
+		
+		TiledMapTileLayer PadTeLopen = (TiledMapTileLayer) map.getLayers().get("Collisions pad te lopen");
+		tileSize = PadTeLopen.getTileWidth();
+		for(int row=0;row<PadTeLopen.getHeight();row++){
+			for(int col=0;col<PadTeLopen.getWidth();col++){
+				Cell cell = PadTeLopen.getCell(col, row);
+				
+				if(cell == null) {
+					System.out.println("found air blocks");
+					continue;
+				}
+				if(cell.getTile() == null){
+					System.out.println("found air blocks");
+					continue;
+				}
+				bdef.type = BodyType.StaticBody;
+				bdef.position.set((col + 0.5f) * tileSize ,
+								  (row + 0.5f) * tileSize );
+				collisionLayer = world.createBody(bdef);
+				fdef.friction = 0;
+				fdef.shape = sjeep;
+				fdef.isSensor = false;
+				collisionLayer.createFixture(fdef);
+			}
+		}
+		TiledMapTileLayer Level1 = (TiledMapTileLayer) map.getLayers().get("Enter Level 1 Collider");
+		tileSize = Level1.getTileWidth();
+		for(int row=0;row<Level1.getHeight();row++){
+			for(int col=0;col<Level1.getWidth();col++){
+				Cell cell = Level1.getCell(col, row);
+				
+				if(cell == null) {
+					System.out.println("found air blocks");
+					continue;
+				}
+				if(cell.getTile() == null){
+					System.out.println("found air blocks");
+					continue;
+				}
+				bdef.type = BodyType.StaticBody;
+				bdef.position.set((col + 0.5f) * tileSize ,
+						(row + 0.5f) * tileSize );
+				level1Collider = world.createBody(bdef);
+				fdef.friction = 0;
+				fdef.shape = sjeep;
+				fdef.isSensor = true;
+				level1Collider.createFixture(fdef);
+			}
+		}
+	}
 
-	final Vector2 position = new Vector2();
-	final Vector2 velocity = new Vector2();
-	
-	float stateTime = 0;
-	boolean facesRight = true;
-	boolean grounded = false;
-	
-	public boolean isWalkingDown = false;
-
-private TiledMap map;
-private OrthogonalTiledMapRenderer renderer;
-private OrthographicCamera camera;
-private Texture koalaTexture;
-private Animation stand;
-private Animation walk;
-private Animation jump;
-private Level1 koala;
-private Rectangle koalaRect;
-
-private static final float GRAVITY = -2.5f;
-
-@Override
-public void show () {
-	koalaTexture = new Texture("player.png");
-	map = new TmxMapLoader().load("maps/Level1.tmx");
-	renderer = new OrthogonalTiledMapRenderer(map);
-	camera = new OrthographicCamera();
-	camera.setToOrtho(false, 320, 240);
-	camera.update();
-	koala = new Level1();
-	koala.position.set(11 * 64, 50 * 64);
-	koalaRect = new Rectangle(koala.position.x, koala.position.y, 64, 128);
-}
-
-@Override
-public void render (float delta) {
-	// clear the screen
-	Gdx.gl.glClearColor(0.7f, 0.7f, 1.0f, 1);
-	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-	// get the delta time
-	float deltaTime = Gdx.graphics.getDeltaTime();
-
-	// update the koala (process input, collision detection, position update)
-	updateKoala(deltaTime);
-
-	// let the camera follow the koala, x-axis only
-	koalaRect.x = koala.position.x;
-	koalaRect.y = koala.position.y;
-	camera.position.x = koalaRect.x + koalaRect.width/2;
-	camera.position.y = koalaRect.y + koalaRect.height/2;
-	camera.update();
-
-	// set the tile map rendere view based on what the
-	// camera sees and render the map
-	renderer.setView(camera);
-	renderer.render();
-
-	// render the koala
-	renderKoala(deltaTime);
-	//System.out.println(koala.position.x + " " + koala.position.y);
-	KoalaWalkDownTest();
-}
-
-private Vector2 tmp = new Vector2();
-
-private void updateKoala (float deltaTime) {
-	koala.stateTime += deltaTime;
-
-	// check input and apply to velocity & state
-	if ((Gdx.input.isKeyPressed(Keys.SPACE)) && koala.grounded) {
-		koala.grounded = false;
+	@Override
+	public void render(float delta) {
+		update(delta);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		camera.update();
+		camera.position.set(player.getPosition().x, player.getPosition().y, 0);
+		camera.update();
+		float bgX = camera.position.x - 320;
+		float bgY = camera.position.y - 320;
+		cam.position.x = camera.position.x;
+		cam.position.y = camera.position.y;
+		
+		tmr.getBatch().begin();
+			tmr.getBatch().draw(Assets.bg, bgX, bgY);
+		tmr.getBatch().end();
+		cam.update();
+		tmr.setView(cam);
+		tmr.render();
+		
+		tmr.getBatch().begin();
+			tmr.getBatch().draw(sprite, player.getPosition().x - 16, player.getPosition().y - 16);
+			if(enableLevel1){
+				tmr.getBatch().draw(sprite1, player.getPosition().x - 225, player.getPosition().y - 125);
+			}
+		tmr.getBatch().end();
+		
+		//b2dr.render(world, camera.combined);
+		if(!enableLevel1){
+			if(Gdx.input.isKeyPressed(Keys.A)){
+				player.setLinearVelocity(-100f,0f);
+			}
+			if(Gdx.input.isKeyPressed(Keys.D)){
+				player.setLinearVelocity(100f,0f);
+			}	
+	        if(Gdx.input.isKeyPressed(Keys.W)){
+	        	player.applyForceToCenter(0f,10000f,true);
+			}
+	        if(Gdx.input.isKeyPressed(Keys.S)){
+	        	player.applyForceToCenter(0f, -10000f, true);
+			}
+	        if(!Gdx.input.isKeyPressed(Keys.S) && !Gdx.input.isKeyPressed(Keys.A) && !Gdx.input.isKeyPressed(Keys.D) && !Gdx.input.isKeyPressed(Keys.W)){
+	        	player.setLinearVelocity(0, 0);
+	        }
+		}else{
+			if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
+	        	System.out.println("Pressed ENTER");
+	        	((Game) Gdx.app.getApplicationListener()).setScreen(new Box2D());
+	        }
+		}
 	}
 	
-	if (Gdx.input.isKeyPressed(Keys.DOWN) || Gdx.input.isKeyPressed(Keys.S)) {
-		isWalkingDown=true;
-	} else {
-		isWalkingDown=false;
+	public void update(float delta){
+		world.step(delta, 1, 1);
 	}
 	
-	if (Gdx.input.isKeyPressed(Keys.UP) || Gdx.input.isKeyPressed(Keys.W)) {
+	private void createCollisionListener() {
+        world.setContactListener(new ContactListener() {
+            @Override
+            public void beginContact(Contact contact) {
+                Fixture fixtureA = contact.getFixtureA();
+                Fixture fixtureB = contact.getFixtureB();
+                boolean sensorA = fixtureA.isSensor();
+                boolean sensorB = fixtureB.isSensor();
+                if(sensorA && sensorB){
+                	return;
+                }else{
+                	if(fixtureA == player.getFixtureList().get(0) && fixtureB == level1Collider.getFixtureList().get(0)){
+                		enableLevel1 = true;
+                	}
+                	if(fixtureB == player.getFixtureList().get(0) && fixtureA == level1Collider.getFixtureList().get(0)){
+                		enableLevel1 = true;
+                	}
+                }
+                System.out.println("Level1: " + enableLevel1);
+            }
+
+            @Override
+            public void endContact(Contact contact) {
+                Fixture fixtureA = contact.getFixtureA();
+                Fixture fixtureB = contact.getFixtureB();
+                boolean sensorA = fixtureA.isSensor();
+                boolean sensorB = fixtureB.isSensor();
+                if(sensorA && sensorB){
+                	return;
+                }else{
+                	if(fixtureA == player.getFixtureList().get(0)){
+                		enableLevel1 = false;
+                	}
+                	if(fixtureB == player.getFixtureList().get(0)){
+                		enableLevel1 = false;
+                	}
+                }
+                System.out.println("Level1: " + enableLevel1);
+            }
+
+            @Override
+            public void preSolve(Contact contact, Manifold oldManifold) {
+            }
+
+            @Override
+            public void postSolve(Contact contact, ContactImpulse impulse) {
+            }
+
+        });
+    }
+	
+
+	@Override
+	public void resize(int width, int height) {
+		// TODO Auto-generated method stub
 		
 	}
 
-	if (Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
-		koala.facesRight = false;
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
 	}
 
-	if (Gdx.input.isKeyPressed(Keys.RIGHT) || Gdx.input.isKeyPressed(Keys.D)) {
-		koala.facesRight = true;
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+		
 	}
-	// Apply damping to the velocity on the x-axis so we don't
-	// walk infinitely once a key was pressed
-	koala.velocity.x *= koala.DAMPING;
-	koala.WIDTH = 64;
-	koala.HEIGHT = 128;
-	float oldX = koala.position.x;
-	float oldY = koala.position.y;
-	 TiledMapTileLayer collisionLayer = (TiledMapTileLayer) map.getLayers().get("Grass");
-	 for(int x=0;x<collisionLayer.getWidth();x++){
-		 for(int y=0;y<collisionLayer.getHeight();y++){
-			 if(koala.velocity.x < 0){
-				 //top left
-				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + HEIGHT) / 64)) == null){
-					 break;
-				 }else{
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + HEIGHT) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-				 //middle left
-				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-				 //bottom left
-				 if(collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) (koala.position.x / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-			 }
-			 
-			 if(koala.velocity.x > 0){
-				//top left
-				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + HEIGHT) / 64)) == null){
-					 break;
-				 }else{
-					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + HEIGHT) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-				 //middle left
-				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/2)) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y + (HEIGHT/4)) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-				 //bottom left
-				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionX == false)
-					 collisionX = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked");
-				 }
-			 }
-			 
-			 if(koala.velocity.y < 0){
-				 //bottom left
-				 if(collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)) == null){
-					 break;
-				 }else{
-					 collisionY = collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
-				 }
-				 //middle bottom
-				 if(collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionY == false)
-					 collisionY = collisionLayer.getCell((int) ((koala.position.x) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
-				 }
-				 //bottom right
-				 if(collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)) == null){
-					 break;
-				 }else{
-					 if(collisionY == false)
-					 collisionY = collisionLayer.getCell((int) ((koala.position.x + 64) / 64), (int) ((koala.position.y) / 64)).getTile().getProperties().containsKey("blocked"); 
-				 }
-			 }
-		 }
-	 }
-	 
-	 if(collisionX){
-		 koala.position.x = oldX;
-		 koala.velocity.x = 0;
-		 koala.position.add(koala.velocity);
-	 }if(collisionY){
-		 koala.position.y = oldY;
-		 koala.velocity.y = 0;
-		 koala.position.add(koala.velocity);
-	 }
-	 koala.position.add(koala.velocity);
-	 koala.velocity.scl(1 / deltaTime);
-	 //System.out.println("x: " + collisionX + " " + "y: " + collisionY);
-	 System.out.println(koala.position.y);
-}
 
-private void renderKoala (float deltaTime) {
-
-	// draw the koala, depending on the current velocity
-	// on the x-axis, draw the koala facing either right
-	// or left
-	renderer.getBatch().begin();
-		renderer.getBatch().draw(koalaTexture, koala.position.x, koala.position.y, WIDTH, HEIGHT);
-	renderer.getBatch().end();
-}
-
-public void KoalaWalkDownTest () {
-	if(isWalkingDown){
-		koala.position.y-=1;
-		System.out.println("isWalkingDown");
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
 	}
-}
 
-@Override
-public void dispose () {
-}
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
 
-@Override
-public void resize(int width, int height) {
-	// TODO Auto-generated method stub
+	@Override
+	public boolean keyDown(int arg0) {
+		
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDragged(int arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchUp(int arg0, int arg1, int arg2, int arg3) {
+		// TODO Auto-generated method stub
+		return false;
+	} 
 	
-}
-
-@Override
-public void pause() {
-	// TODO Auto-generated method stub
 	
-}
-
-@Override
-public void resume() {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public void hide() {
-	// TODO Auto-generated method stub
-	
-}
 }
