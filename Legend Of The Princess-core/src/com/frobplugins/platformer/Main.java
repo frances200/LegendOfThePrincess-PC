@@ -17,11 +17,7 @@ public class Main extends Game implements ApplicationListener {
 	public void create () {
         Assets.loadAssets();
         batch = new SpriteBatch();
-        setScreen(new SplashScreen(this));
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 640, 640);
-        b2dcam = new OrthographicCamera();
-        b2dcam.setToOrtho(false, 640 / PPM, 640 / PPM);
+        setScreen(new Box2D());
 	}
 
     @Override
