@@ -39,6 +39,7 @@ public class Box2D implements Screen,InputProcessor{
 	
 	@Override
 	public void show() {
+		SoundManager.theme.stop();
 		Gdx.input.setInputProcessor(this);
 		b2dr = new Box2DDebugRenderer();
 		cam = new OrthographicCamera();

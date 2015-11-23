@@ -4,29 +4,29 @@
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="src" path="/Legend Of The Princess-core"/>
 	<classpathentry kind="src" path="assets"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-backend-headless-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-backend-lwjgl-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-box2d-platform-1.7.0-natives-desktop.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-bullet-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-bullet-platform-1.7.0-natives-desktop.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-controllers-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-controllers-desktop-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-controllers-platform-1.7.0-natives-desktop.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-freetype-platform-1.7.0-natives-desktop.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-platform-1.7.0-natives-desktop.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/gdx-tools-1.7.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jinput-2.0.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jinput-platform-2.0.5-natives-linux.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jinput-platform-2.0.5-natives-osx.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jinput-platform-2.0.5-natives-windows.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jlayer-1.0.1-gdx.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jorbis-0.0.17.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/jutils-1.0.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl_util-2.9.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-2.9.2.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-platform-2.9.2-natives-linux.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-platform-2.9.2-natives-osx.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Gebruiker/.gradle/caches/modules-2/files-2.1/com.badlogicgames.gdx/Desktop/lwjgl-platform-2.9.2-natives-windows.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-backend-headless-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-backend-lwjgl-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-box2d-platform-1.7.0-natives-desktop.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-bullet-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-bullet-platform-1.7.0-natives-desktop.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-controllers-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-controllers-desktop-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-controllers-platform-1.7.0-natives-desktop.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-freetype-platform-1.7.0-natives-desktop.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-platform-1.7.0-natives-desktop.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/gdx-tools-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jinput-2.0.5.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jinput-platform-2.0.5-natives-linux.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jinput-platform-2.0.5-natives-osx.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jinput-platform-2.0.5-natives-windows.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jlayer-1.0.1-gdx.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jorbis-0.0.17.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/jutils-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/lwjgl_util-2.9.2.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/lwjgl-2.9.2.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/lwjgl-platform-2.9.2-natives-linux.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/lwjgl-platform-2.9.2-natives-osx.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/Desktop/lwjgl-platform-2.9.2-natives-windows.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

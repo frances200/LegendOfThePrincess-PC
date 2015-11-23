@@ -48,6 +48,9 @@ public class MainMenu implements Screen {
         parameter.borderWidth = 2;
         parameter.size = 48;
         font = generator.generateFont(parameter);
+        SoundManager.create();
+        SoundManager.theme.setLooping(true);
+        SoundManager.theme.play();
     }
 
     @Override
