@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="rpg_maker_vx_rtp_tileset_by_telles0808" tilewidth="32" tileheight="32" tilecount="2016">
+  <image source="rpg_maker_vx_rtp_tileset_by_telles0808.png" width="1024" height="2016"/>
+ </tileset>
+ <tileset firstgid="2017" name="Stone Tiles Sprites" tilewidth="32" tileheight="32" tilecount="512">
+  <image source="Stone Tiles Sprites.png" trans="ffffff" width="1024" height="512"/>
+ </tileset>
+ <tileset firstgid="2529" name="thaenn__s_tileset_by_hypersnake22-d2lzncv" tilewidth="32" tileheight="32" tilecount="1632">
+  <image source="thaenn__s_tileset_by_hypersnake22-d2lzncv.png" width="256" height="6536"/>
+ </tileset>
+ <tileset firstgid="4161" name="pokemon_lost_souls_tiles_update_3_by_lostsoulsdev-d5kpkld" tilewidth="32" tileheight="32" tilecount="375">
+  <image source="pokemon_lost_souls_tiles_update_3_by_lostsoulsdev-d5kpkld.png" trans="ffffff" width="800" height="496"/>
+ </tileset>
+ <layer name="Grond" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMBKGr9/0LDZZDwVVTVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/ATccJDY=
+  </data>
+ </layer>
+ <layer name="Pad" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2kFKw0AAQNGAZO/GA7rSm3ky7yFdCKLRYMlkPuQ9CJR20WY+Q2aSLgsAAAAAAAAA8PQ45uA+erSM6qHJffRo0aJFjxY9WvRo0aNFjxY92PP+MPsXXM9tzEcdo77zqq587kV6tOjRokeLHvN9bfDba85z9DrTmvU4/xk3+4XjvKzL8rb+fH9rXJ/X7c+M+7FuTV43mnwy/k06tOjRokeH60aHFh06dGjRosf59p6tcq6/9tx6zLPVRY/53Ktq06TJfGnSpMl8aXLtbxv5n2Brvz6Nmr7vY825uYxjhxYterTo0aFFix4dWrTo0aFFix4tenRo0eB+33zuu86nwTyePwAAAAAAAAAA7PsAzpXYJA==
+  </data>
+ </layer>
+ <layer name="KasteelMuur" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2rlNQ0EYhdGX4dAWNlWwJDTAUgV7D6wW0AG7gA7YBTRHxCJx05GcmpHNOdIXTfJ0//Q1DQAAAAAAAAAwLL32+DXKam/nHqXa27lHqfZ27lGqvZ17lGpv5x6l2tu5R6n2du5Rqr2de5Rqb+cepdrbuQcAjLaPicFRR7c1OOqYbw0OAAAAAAAA+L8W2k2zmJbSsv/dqtjI7ptpK62k1bSW1t3jzxx2muYoHaf97H6Q+mk77aTdtJc+01f6Tj/uMzTXucNNuk0X2fkyXaWTdJrO0nmazHs39dJUp/ZXj6/XbPuW3tNTdn9OL+ku3aeH9Jim8z6TZtOcewAAAAAAAAAAAAAAAAAAAFDRL+xseRo=
+  </data>
+ </layer>
+ <layer name="Achtergrond toren" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztyLENAAAIA6DG0f8P9gUdTWAkAQAAAAAAAAAAAAAAAL6pvj0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsDdfYgAZ
+  </data>
+ </layer>
+ <layer name="Muur Voorkant" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1DtOG1EYhuEjYQSWAtiIlkvDpSQowtBwWUGABnYANLRQQlhFQpkdJCyMi6Hmo4hEG2vsQfbzSG8x0/znzC+7FAAAAAAAAAAAAODdcrOUlWbdpwAAqnY7XvcJ+Oi3fYys40YpJ426TzFcLsb+7/0/m/kdXmYXV/bxaXSG6L+xO9Gfep3xkB7TU0Wzq7zrIMxN9qdeZ7RSO81WNLvKuw7Ct8n+1OuM9fQ1bVQ0u8q7AgAAAAAAAAAw3J5bpXTTS3pNp+ksnbfqPtlo+tIuZSpNp5l0nT3cpB9pPs8LaTEttes+6WhYzndeSatpLf3MHn6lu7SZ507aStv2MRA7+c67aS/tpz/Zw990n77n+SAdpiP7AAAAAAAAAAAAAAAAAAAYWm+ZnG1U
+  </data>
+ </layer>
+ <layer name="Ramen etc" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt10FqwlAQANAPiQFL9x5AewTpAartjdxLTiJepYteoLYXEV06i4JZGPgSQyy+B0M+wzB8ZgghKQEAAAAAAAAAAAAA/926OJ/r4nK+reYroyanJ2ebxly2xeV8W81nRk1OT7hX9WjoG9C07XEfRZVSWfXXn+tMYxezv318lyntIn4ifsth7/Wo3mIXi4hVzH8f8Rrv4iGeR/sY1L4x/3nsZOKb1clynNJ7xMf4trV0Vz5dl6dfzy1zb8sDQK4X/xcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAnZ0AnxgaBg==
+  </data>
+ </layer>
+ <layer name="Torens Voor" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0btOVGEYheEtDsUek7kPgQbUQpEClMIDhadCkUKQgoOFCAUiFZfiNcj9iBVaKRXQsBIKIsmQTTHzE/I8yZtM/pli8q2qAgAAAAAAAAAAAAAAuB5+tM4+77a6/45TO4PNv/tZV9Ve+lU3e+fyvl+wx/nv9nPv3+lP3eyd3vqbe/9LB3Wzd3rrRruqBtLN9v/vh9nhKB3bo6+67dHtnd6yx9VS597tdKvd7B2gX253qmooDaeRTul/w2g2GEt30t10zyZF3c/9H6Tx9DBN2KOoydx/Kj1Kj9O0PYp6kvs/Tc/S8zRjj6Je5P4v06v0Or2xR1Fvc/93aTa9T3P2KOpD7j+fFtLHtGiPopZy/+W0klbTJ3sU9Tn3X0tf0nrasEdRm7n/17SVvqVtewAAAAAAAAAAAAAAAAAAAAAAAEARJ8g4Lbs=
+  </data>
+ </layer>
+ <layer name="Deur" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0TEKwkAQBdCwRATxHtpZeQbtLPUG2mmnvY338DoeygW1SDBhNTGmeA+WGWZhWeZnGQAAAAAAAAAAAAB06xb+/QNSTWJW05De08xsWKxli7jnZUjvaWYVczg86zvbuOddSO9pZj8s1rJLeJzUHvroPPjujt+41uy87u5T6zzLNnl77/G9ecz1GLM45XLpm1cutCMffTbnt8YVe6+aAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3bkDJHkUtQ==
+  </data>
+ </layer>
+ <layer name="iets?" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztm8Fu00AQhiNat70i8QhwgwMST4BUOSceAE5IRc4zwAXooXkMEIf0QXgRUBASZx6AWs2q02FmdrPZtSfO/0nWqI6768zMt7ZVdzYDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGA4Hp7ej2Bcnp/ejwBMlctG33L58UDe/0fZD+741ugbGJ7z49ns8fH/sTa/juTt0DlvbmvAIxiey0b3Y5frB8jDukZIn2nPG9r+v6fyBsoQnjdeb+KbyHPIozN5A7e0Nz0/j6xD/eex495v8v8h0usvzuQN3Ob46mZbkkhzHmqwYp+n1BDcYeWsJTm92uT6mtRkQX6nI/vDcbw2IA7NHa1NS/ZrkfthHV/bl6l4yNegbWPIQbfxhUdpnkVm3miv8DiVNdLq/5TIc9sYz4Kd4KGGlfN9jxal/LhI6MfYPQE/btdeWRUcp2S0yP2OS/Jz6trQKePx61DJflwVHs+jH/w70jXr7Yk+l5RrvuZpNdvWB36+Hryo6Uefw47lcn1Ti09GPaRcL9j55foRzsfy2Uu0yPUjrDH8+v3VqEeoieSVVbNYbyw35/Px5P74h+JHiHMy9jrxbw9to3vRj8f9CH1v9UYY78uJ/Bw0tg+1/bD6O1YL2s+8RtJa9vvIftak42lr3dg+DOlH6Oued8Zcn5u7tYjWUsthLMc811bux/ZhKD+k/pxH5uuasvdTKbkf24eh/JAiX4skvrNrflew/zz6MJQfVrR84fUo6YnkQ+9jaQ/3xY9UX7SahNyl1j4cz3NO9/OaH6IfMV+kegTaJm3d73NNn38uhBpYNT9EP6RIayOtaamehN9bR55Brdocqh8p/mg50/rZ8mCbmkg9w89P+7yWH7ljl/YmlrtQG75W7VoT7qNUe94bNf24zhy7hifSGqbxs8A7onQMXvMQOdpxls/75se2voxJfz/yNPK+UmptKd782NWXHNomfo/B6evxrMK7kp79oDHURsthLm2kFzSeVHpn3Lsfmi+WR1KNXpF74paNsyLRWjM1j1J7IuW4ffHDyhn3yKpRy8ZZCuPSWi9I/jplnth8vIem4seQNee1CP3Nzytnnqn4IeWuVs2lWsR8TI1T8WMIX8L4c5K3Ul5M3Y8ankh+dMK8u8wzVT9q+UZrMaYfHnLiIc5JzkItxvDDw9ozVJS+d+9F19jvWpSYH37Ia5PlRU8n5LLE/PBD9kPzgq9VpfMDP9Kv3dyPUIuS86ccM3a/1vRAqoHkA6etdF4px4zdr0N4kFqDeVP3/7Es6DlPLebUYIjziuGhj0vHvgYvjb9RDOFBjh89Y/dxjRhyrcUx14VD9MNzPEQ/PEf44SvCD18RfviK8MNXhB++IvzwFeGHrwg/fEX44SvCD18RfviK8MNXhB++IvzwFQEAAIAc/gEZ0vbb
+  </data>
+ </layer>
+ <layer name="easter egg muur fix" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0TEKgEAMBMB0d6WKD1Hx/29S8QGmv6sEwWIGtsl2mwgAAAAAAAAAAAAAAAAA+K+jRJyZq7Td3bnxraFGjJmptt3cufGtJTdfM1tn+90/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXnsAir4FMg==
+  </data>
+ </layer>
+ <layer name="easter egg boom fix" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0bENgDAQA8BvfjbYBDaBTWBMPiVFlA4R6U5y4daOAAAAAAAAAAAAAAAAAAAYWzJizX7nO237o7Lnu5/++IWtfrgqtz8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGBaD9UQBaI=
+  </data>
+ </layer>
+ <layer name="Collisions pad te lopen" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt2ltugzAQBdD8di/d//qifkSKEGP8xKNyjoSUhliQucE2pq8XAAAAAAAAAAAAAABZ/P7sPoPn+at5tH32M9dVza/aMk9LPV0f65Xqedz3/bc81pBHLt91rdnO2jFPb13lsYY8cjn2Vz3tmOdsTGhpJ4+5RvP4vJbLPNEcq6bN8T25jIvuM2oyiXKhX1T/2rr2tiM2+jvvHYc4N3rvLY95ormS/mqP3vE8+ow8+pX6mdY5r/nuuJb19tJ+OcwTjRnW3PfqvQ+Ux3o9YwdrldayzKv2qqm/PO5V878+PXNeOY47W6M/7m9Zt5fJfFFNa8chmcxXO1cu3c+sPLfa6/Y/af3O0fPJ2Vt03CfJ/J0zn9tKPdfLqmvieJynK62PnX1m5vFa9j1JqT9fUaPoN8Ae5tR5WNPJQxa56KdykUce+qpcXBt5XD2j4T76qRxKz8W4lzWq/azh7teSgTXDNWSQhwzy6X32BwAAAAAAAACs9waavj3o
+  </data>
+ </layer>
+ <layer name="Enter Level 1 Collider" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztziEBAAAIA7ALYtA/JwXwN1uCJQAAAAAAAAAAAAAAwGenPQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoONo4AIQ==
+  </data>
+ </layer>
+ <layer name="Enter Level 2 Collider" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztzkENAAAIBKB7GMP+OY3hdJCABAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA77q2BwAAAAAAAAAAAAAAAAAAAHcMUTQAIQ==
+  </data>
+ </layer>
+ <layer name="Enter Level 3 Collider" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztzkENAAAIBKB7GMP+OY3hnJCABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA+6tgcAAAAAAAAAADcMyXgAIQ==
+  </data>
+ </layer>
+ <layer name="Enter Level 4 Collider" width="100" height="100" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+  </data>
+ </layer>
+</map>
