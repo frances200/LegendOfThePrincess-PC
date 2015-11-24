@@ -13,17 +13,41 @@ public class Assets {
     public static Texture splash;
     public static Texture bg;
 
+    public static Texture credits;
     public static Texture mainmenu;
     public static Texture opties;
-    public static Texture credits;
+    public static Texture geluid;
+    
+    public static Texture volume_10;
+    public static Texture volume_20;
+    public static Texture volume_30;
+    public static Texture volume_40;
+    public static Texture volume_50;
+    public static Texture volume_60;
+    public static Texture volume_70;
+    public static Texture volume_80;
+    public static Texture volume_90;
+    public static Texture volume_100;
 
     public static void loadAssets(){
         splash = new Texture(Gdx.files.internal("FrobPlugins_splash.png"));
         bg = new Texture(Gdx.files.internal("maps/bg3.png"));
         
+        credits = new Texture(Gdx.files.internal("credits.png"));
         mainmenu = new Texture(Gdx.files.internal("menu.png"));
         opties = new Texture(Gdx.files.internal("opties.png"));
-        credits = new Texture(Gdx.files.internal("credits.png"));
+        geluid = new Texture(Gdx.files.internal("geluid.png"));
+
+        volume_10 = new Texture(Gdx.files.internal("volume/volume_10.png"));
+        volume_20 = new Texture(Gdx.files.internal("volume/volume_20.png"));
+        volume_30 = new Texture(Gdx.files.internal("volume/volume_30.png"));
+        volume_40 = new Texture(Gdx.files.internal("volume/volume_40.png"));
+        volume_50 = new Texture(Gdx.files.internal("volume/volume_50.png"));
+        volume_60 = new Texture(Gdx.files.internal("volume/volume_60.png"));
+        volume_70 = new Texture(Gdx.files.internal("volume/volume_70.png"));
+        volume_80 = new Texture(Gdx.files.internal("volume/volume_80.png"));
+        volume_90 = new Texture(Gdx.files.internal("volume/volume_90.png"));
+        volume_100 = new Texture(Gdx.files.internal("volume/volume_100.png"));
         		
     }
 }

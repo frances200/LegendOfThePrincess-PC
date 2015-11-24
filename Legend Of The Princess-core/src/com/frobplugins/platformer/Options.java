@@ -51,7 +51,7 @@ public class Options implements Screen{
 	}
 
 	@Override
-	public void render(float arg0) {
+	public void render(float delta) {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
@@ -63,14 +63,16 @@ public class Options implements Screen{
         	font.draw(main.batch, "Graphics", 220, 300);
         	font.draw(main.batch, "Overig", 240, 160);
         main.batch.end();
+        
+        clickListener();
 		
 	}
 
     public void clickListener(){
         if(Gdx.input.justTouched()){
-            if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
-                    && Gdx.input.getY() >= 310 && Gdx.input.getY() <= 400){
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
+        	if(Gdx.input.getX() >= 215 && Gdx.input.getX() <= 415
+                    && Gdx.input.getY() >= 170 && Gdx.input.getY() <= 270){
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Geluid(main));
             }
         }
     }

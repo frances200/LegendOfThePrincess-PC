@@ -1,6 +1,5 @@
 package com.frobplugins.platformer;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -8,20 +7,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Geluid implements Screen{
 	
-    Stage stage = new Stage(new StretchViewport(320, 240));
 	Main main;
-
-    public static Image splashImage;
-    private Viewport viewport;
+	
+	public static int Volume = 100;
 	private OrthographicCamera camera;
     private BitmapFont font;
     private FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
@@ -37,17 +28,13 @@ public class Geluid implements Screen{
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 320, 240);
         camera.update();
-        splashImage = new Image(Assets.opties);
-        stage.addActor(splashImage);
-        splashImage.setPosition(0, 0);
-        splashImage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.5f)));
-        viewport = new FitViewport(320, 240, camera);
         parameter.borderColor = Color.WHITE;
         parameter.color = Color.BLACK;
-        parameter.borderWidth = 2;
-        parameter.size = 48;
+        parameter.borderWidth = 1;
+        parameter.size = 18;
         font = generator.generateFont(parameter);
-		
+        Volume();
+	        
 	}
 
 	@Override
@@ -55,30 +42,68 @@ public class Geluid implements Screen{
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        stage.getViewport().apply();
-        stage.act();
-        stage.draw();
+        Volume();
+        main.batch.setProjectionMatrix(camera.combined);
         main.batch.begin();
-        	//font.draw(main.batch, "Geluid", 240, 430);
-        	font.draw(main.batch, "Geluid", 220, 300);
+        
+        	main.batch.draw(Assets.geluid, 0, 0);
+        
+        	if(Volume == 10){
+        		main.batch.draw(Assets.volume_10, 70, 130);
+        		SoundManager.theme.setVolume(0.1f);
+        	} else if(Volume == 20){
+        		main.batch.draw(Assets.volume_20, 70, 130);
+        		SoundManager.theme.setVolume(0.2f);
+        	} else if(Volume == 30){
+        		main.batch.draw(Assets.volume_30, 70, 130);
+        		SoundManager.theme.setVolume(0.3f);
+        	} else if(Volume == 40){
+        		main.batch.draw(Assets.volume_40, 70, 130);
+        		SoundManager.theme.setVolume(0.4f);
+        	} else if(Volume == 50){
+        		main.batch.draw(Assets.volume_50, 70, 130);
+        		SoundManager.theme.setVolume(0.5f);
+        	} else if(Volume == 60){
+        		main.batch.draw(Assets.volume_60, 70, 130);
+        		SoundManager.theme.setVolume(0.6f);
+        	} else if(Volume == 70){
+        		main.batch.draw(Assets.volume_70, 70, 130);
+        		SoundManager.theme.setVolume(0.7f);
+        	} else if(Volume == 80){
+        		main.batch.draw(Assets.volume_80, 70, 130);
+        		SoundManager.theme.setVolume(0.8f);
+        	} else if(Volume == 90){
+        		main.batch.draw(Assets.volume_90, 70, 130);
+        		SoundManager.theme.setVolume(0.9f);
+        	} else if(Volume == 100){
+        		main.batch.draw(Assets.volume_100, 70, 130);
+        		SoundManager.theme.setVolume(1f);
+        	} 
+        	
+        	font.draw(main.batch, "Volume:", 0, 161.25F);
+        	//font.draw(main.batch, "Geluid", 220, 300);
         	//font.draw(main.batch, "Overig", 240, 160);
         main.batch.end();
 		
+        clickListener();
 	}
 
     public void clickListener(){
         if(Gdx.input.justTouched()){
-            if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
-                    && Gdx.input.getY() >= 310 && Gdx.input.getY() <= 400){
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
+            if(Gdx.input.getX() >= 140 && Gdx.input.getX() <= 190
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("test");
+            	Volume = 10;
             }
         }
+    }
+    
+    public void Volume() {
+    	
     }
 
 	@Override
 	public void resize(int width, int height) {
-        viewport.update(width, height);
-        stage.getViewport().update(width, height, false);
 		
 	}
 
