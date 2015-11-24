@@ -5,7 +5,8 @@ import com.badlogic.gdx.audio.Music;
 public class SoundManager {
 	
 	public static Music theme;
-	
+	public static Music LevelScreen;
+	public static Music Level1;
 	
 
 	public static void create() {
