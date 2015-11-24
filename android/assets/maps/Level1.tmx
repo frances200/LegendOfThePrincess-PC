@@ -8,14 +8,14 @@
    </properties>
   </tile>
  </tileset>
- <layer name="Air" width="100" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAOBvLuAAAQ==
-  </data>
- </layer>
  <layer name="Grass" width="100" height="30">
   <data encoding="base64" compression="zlib">
    eJzt19EKQEAQheHl/R9arkijNVm74vvrLzdSc5xZSgEAAAAAAF9kCsQY1tnPgbLpx37WURZn2aA9VzOQSxuisyDbhyu5oE6reWe6IpuYnlnYYxvT4brlHrLH8jx1JvTqyte6NHre2VzO3p3ad0ft/zR7/10j3taFkfmOfv6fsyBJkiRJlrIAIxUJ0A==
+  </data>
+ </layer>
+ <layer name="CollisionLayer" width="100" height="30" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJzt0UEKwCAMRUH33v++3RehRSURMwMP3An5rQEAAAA36oPIMdrCNrH+bGCXGLNb2GXOjnvbZI+oLWzzLWuL6rv01/u0qsm+9+out+2WfedT9s3+v/IWkiRJkiSd1gPb6zgq
   </data>
  </layer>
 </map>

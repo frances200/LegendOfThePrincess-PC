@@ -35,8 +35,6 @@ public class Level_1 implements Screen {
 		b2dr = new Box2DDebugRenderer();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 640, 640);
-		b2dCam = new OrthographicCamera();
-		b2dCam.setToOrtho(false, 640 / PPM, 640 / PPM);
 		BodyDef bdef = new BodyDef();
 		bdef.position.set(160 / PPM, 120 / PPM);
 		bdef.type = BodyType.StaticBody;
@@ -57,41 +55,51 @@ public class Level_1 implements Screen {
 		fdef.shape = shape;
 		player.createFixture(fdef);
 		
-		map = new TmxMapLoader().load("maps/Level5.tmx");
+		b2dCam = new OrthographicCamera();
+		b2dCam.setToOrtho(false, 640 / PPM, 640 / PPM);
+		
+		map = new TmxMapLoader().load("maps/Level1.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
 		cam.position.set(new Vector2(12 * 64, 20 * 64), 0);
 		cam.update();
 		
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Tilelaag 1");
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("CollisionLayer");
 		for(int row=0;row<layer.getHeight();row++){
 			for(int col=0;col<layer.getWidth();col++){
-				Cell cell = layer.getCell(col, row);
-				
-				if(cell == null) continue;
-				if(cell.getTile() == null) continue;
-				bdef.type = BodyType.StaticBody;
-				bdef.position.set((col + 0.5f) * 64 / PPM, 
-								  (row + 0.5f) * 64 / PPM
-				);
-				shape.setAsBox(32 / PPM, 32 / PPM);
-				fdef.shape = shape;
-				fdef.isSensor = false;
-				fdef.friction = 0;
-				world.createBody(bdef).createFixture(fdef);
-				
-				
+				if(layer.getCell(col, row) != null){
+					Cell cell = layer.getCell(col, row);
+					
+					if(cell == null) {
+						System.out.println("found air blocks");
+						break;
+					}
+					if(cell.getTile() == null){
+						System.out.println("found air blocks");
+						break;
+					}
+					
+					bdef.type = BodyType.StaticBody;
+					bdef.position.set((col + 0.5f) * 64 / PPM, 
+									  (row + 0.5f) * 64 / PPM
+					);
+					shape.setAsBox(32 / PPM, 32 / PPM);
+					fdef.shape = shape;
+					fdef.isSensor = false;
+					fdef.friction = 0;
+					world.createBody(bdef).createFixture(fdef);
+				}
 			}
 		}
 	}
 	
 	@Override
 	public void render(float arg0) {
-		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		world.step(arg0, 1, 1);
-		
+		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		b2dCam.position.x = cam.position.x;
+		b2dCam.position.y = cam.position.y;
 		renderer.setView(cam);
 		renderer.render();
-		
 		b2dr.render(world, b2dCam.combined);
 	}
 	

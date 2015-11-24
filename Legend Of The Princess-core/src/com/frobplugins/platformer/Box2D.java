@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -36,6 +37,7 @@ public class Box2D implements Screen,InputProcessor{
 	Sprite sprite;
 	private float torque = 0;
 	private float PPM = 100;
+	SpriteBatch batch;
 	
 	@Override
 	public void show() {
@@ -46,13 +48,14 @@ public class Box2D implements Screen,InputProcessor{
 		cam.setToOrtho(false, 640, 640);
 		BodyDef bdef = new BodyDef();
 		FixtureDef fdef = new FixtureDef();
+		batch = new SpriteBatch();
 		
-		bdef.position.set(2.4f * tileSize , 22 * tileSize );
+		bdef.position.set(2.4f * tileSize / PPM , 22 * tileSize / PPM );
 		bdef.type = BodyType.DynamicBody;
 		player = world.createBody(bdef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(32 , 64  );
+		shape.setAsBox(32 / PPM , 6 / PPM  );
 		fdef.shape = shape;
 		player.createFixture(fdef);
 		playerTexture = new Texture(Gdx.files.internal("player.png"));
@@ -60,7 +63,7 @@ public class Box2D implements Screen,InputProcessor{
 		
 		//////////////////////////////////////////
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 640, 640);
+		camera.setToOrtho(false, 640 / PPM, 640 / PPM);
 		map = new TmxMapLoader().load("maps/Level1.tmx");
 		tmr = new OrthogonalTiledMapRenderer(map);
 		
@@ -79,13 +82,13 @@ public class Box2D implements Screen,InputProcessor{
 					continue;
 				}
 				bdef.type = BodyType.StaticBody;
-				bdef.position.set((col + 0.5f) * tileSize ,
-								  (row + 0.5f) * tileSize ); 
+				bdef.position.set((col + 0.5f) * tileSize / PPM,
+								  (row + 0.5f) * tileSize / PPM); 
 				ChainShape cs = new ChainShape();
 				Vector2[] v = new Vector2[3];
-				v[0] = new Vector2(-tileSize / 2 , -tileSize / 2);
-				v[1] = new Vector2(-tileSize / 2 , tileSize / 2  );
-				v[2] = new Vector2(tileSize / 2 , tileSize / 2  );
+				v[0] = new Vector2(-tileSize / 2 / PPM, -tileSize / 2 / PPM);
+				v[1] = new Vector2(-tileSize / 2 / PPM, tileSize / 2 / PPM);
+				v[2] = new Vector2(tileSize / 2 / PPM, tileSize / 2 / PPM);
 				cs.createChain(v);
 				fdef.friction = 0;
 				fdef.shape = cs;
@@ -115,12 +118,11 @@ public class Box2D implements Screen,InputProcessor{
 		tmr.setView(cam);
 		tmr.render();
 		
-		tmr.getBatch().begin();
-			tmr.getBatch().draw(sprite, player.getPosition().x - 32, player.getPosition().y - 64);
-		tmr.getBatch().end();
+		batch.begin();
+			batch.draw(sprite, player.getPosition().x - 32, player.getPosition().y - 64);
+		batch.end();
 		
 		b2dr.render(world, camera.combined);
-		player.setLinearVelocity(0, -1000);
 	}
 	
 	public void update(float delta){
