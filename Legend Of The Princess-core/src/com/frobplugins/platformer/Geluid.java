@@ -17,6 +17,9 @@ public class Geluid implements Screen{
     private BitmapFont font;
     private FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+    
+    public static boolean MutedBgMusic = false;
+    public static boolean MutedSoundEffects = false;
 	
 	
     public Geluid(Main main){
@@ -80,9 +83,24 @@ public class Geluid implements Screen{
         		SoundManager.theme.setVolume(1f);
         	} 
         	
+        	if(MutedBgMusic == false) {
+        		main.batch.draw(Assets.non_muted, 240, 67);
+        	} else if(MutedBgMusic == true) {
+        		main.batch.draw(Assets.muted, 240, 67);
+        	}
+        	
+        	if(MutedSoundEffects == false) {
+        		main.batch.draw(Assets.non_muted, 240, 17);
+        	} else if(MutedSoundEffects == true) {
+        		main.batch.draw(Assets.muted, 240, 17);
+        	}
+        	
+        	
         	font.draw(main.batch, "Volume:", 0, 161.25F);
-        	//font.draw(main.batch, "Geluid", 220, 300);
-        	//font.draw(main.batch, "Overig", 240, 160);
+        	font.draw(main.batch, "Demp achtergrond muziek:", 0, 100);
+        	font.draw(main.batch, "Demp geluidseffecten:", 0, 50);
+        	font.draw(main.batch, "[TERUG]", 0, 25);
+
         main.batch.end();
 		
         clickListener();
@@ -90,10 +108,75 @@ public class Geluid implements Screen{
 
     public void clickListener(){
         if(Gdx.input.justTouched()){
+        	
+        	//Changing Volume
             if(Gdx.input.getX() >= 140 && Gdx.input.getX() <= 190
                     && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
-            	System.out.println("test");
+            	System.out.println("volume 10");
             	Volume = 10;
+            } else if(Gdx.input.getX() >= 191 && Gdx.input.getX() <= 240
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 20");
+            	Volume = 20;
+            } else if(Gdx.input.getX() >= 241 && Gdx.input.getX() <= 290
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 30");
+            	Volume = 30;
+            } else if(Gdx.input.getX() >= 291 && Gdx.input.getX() <= 340
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 40");
+            	Volume = 40;
+            } else if(Gdx.input.getX() >= 341 && Gdx.input.getX() <= 390
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 50");
+            	Volume = 50;
+            } else if(Gdx.input.getX() >= 391 && Gdx.input.getX() <= 440
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 60");
+            	Volume = 60;
+            } else if(Gdx.input.getX() >= 441 && Gdx.input.getX() <= 490
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 70");
+            	Volume = 70;
+            } else if(Gdx.input.getX() >= 491 && Gdx.input.getX() <= 540
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 80");
+            	Volume = 80;
+            } else if(Gdx.input.getX() >= 541 && Gdx.input.getX() <= 590
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 90");
+            	Volume = 90;
+            } else if(Gdx.input.getX() >= 591 && Gdx.input.getX() <= 640
+                    && Gdx.input.getY() >= 160 && Gdx.input.getY() <= 290){
+            	System.out.println("volume 100");
+            	Volume = 100;
+            
+            //Muting Background Music
+            } else if(Gdx.input.getX() >= 480 && Gdx.input.getX() <= 580
+                    && Gdx.input.getY() >= 307 && Gdx.input.getY() <= 460){
+            	System.out.println("Muted/ unmuted background music.");
+            	if(MutedBgMusic == false) {
+            		MutedBgMusic = true;
+            		SoundManager.theme.pause();
+            	} else if(MutedBgMusic == true) {
+            		MutedBgMusic = false;
+            		SoundManager.theme.play();
+            	}
+            	
+            //Muting Sound Effects coörds arent right yet.
+            }else if(Gdx.input.getX() >= 480 && Gdx.input.getX() <= 580
+                    && Gdx.input.getY() >= 461 && Gdx.input.getY() <= 594){
+            	System.out.println("Muted sound effects.");
+            	if(MutedSoundEffects == false) {
+            		MutedSoundEffects = true;
+            	} else if(MutedSoundEffects == true) {
+            		MutedSoundEffects = false;
+            	}
+            	
+            //The [TERUG] button
+            } else if(Gdx.input.getX() >= 0 && Gdx.input.getX() <= 80
+                    && Gdx.input.getY() >= 480 && Gdx.input.getY() <= 640){
+            	System.out.println("Test");
             }
         }
     }

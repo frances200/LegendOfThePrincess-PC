@@ -17,6 +17,8 @@ public class Assets {
     public static Texture mainmenu;
     public static Texture opties;
     public static Texture geluid;
+    public static Texture muted;
+    public static Texture non_muted;
     
     public static Texture volume_10;
     public static Texture volume_20;
@@ -37,6 +39,9 @@ public class Assets {
         mainmenu = new Texture(Gdx.files.internal("menu.png"));
         opties = new Texture(Gdx.files.internal("opties.png"));
         geluid = new Texture(Gdx.files.internal("geluid.png"));
+
+        muted = new Texture(Gdx.files.internal("muted.png"));
+        non_muted = new Texture(Gdx.files.internal("non muted.png"));
 
         volume_10 = new Texture(Gdx.files.internal("volume/volume_10.png"));
         volume_20 = new Texture(Gdx.files.internal("volume/volume_20.png"));

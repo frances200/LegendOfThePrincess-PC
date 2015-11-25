@@ -62,6 +62,7 @@ public class Options implements Screen{
         	font.draw(main.batch, "Geluid", 240, 430);
         	font.draw(main.batch, "Graphics", 220, 300);
         	font.draw(main.batch, "Overig", 240, 160);
+        	font.draw(main.batch, "[TERUG]", 0, 67);
         main.batch.end();
         
         clickListener();
