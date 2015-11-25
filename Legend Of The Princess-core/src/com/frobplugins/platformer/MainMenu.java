@@ -28,6 +28,8 @@ public class MainMenu implements Screen {
     private BitmapFont font;
     private FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+    
+    public static boolean hasStartedTheme = false;
 
     public MainMenu(Main main){
         this.main = main;
@@ -50,7 +52,9 @@ public class MainMenu implements Screen {
         font = generator.generateFont(parameter);
         SoundManager.create();
         SoundManager.theme.setLooping(true);
-        SoundManager.theme.play();
+        if(hasStartedTheme == false) {
+        	SoundManager.theme.play();
+        }
     }
 
     @Override

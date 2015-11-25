@@ -40,7 +40,7 @@ public class Options implements Screen{
         splashImage = new Image(Assets.opties);
         stage.addActor(splashImage);
         splashImage.setPosition(0, 0);
-        splashImage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.5f)));
+        splashImage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0f)));
         viewport = new FitViewport(320, 240, camera);
         parameter.borderColor = Color.WHITE;
         parameter.color = Color.BLACK;
@@ -76,6 +76,13 @@ public class Options implements Screen{
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new Geluid(main));
             }
         }
+        if(Gdx.input.justTouched()){
+        	if(Gdx.input.getX() >= 0 && Gdx.input.getX() <= 200
+                    && Gdx.input.getY() >= 565 && Gdx.input.getY() <= 640){
+        		MainMenu.hasStartedTheme = true;
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(main));
+            	}
+            }
     }
 
 	@Override

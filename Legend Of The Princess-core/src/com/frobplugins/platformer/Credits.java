@@ -35,7 +35,7 @@ public class Credits implements Screen{
 	@Override
 	public void show() {
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 320, 240);
+        camera.setToOrtho(false, 640, 640);
         camera.update();
         splashImage = new Image(Assets.credits);
         stage.addActor(splashImage);
@@ -61,6 +61,7 @@ public class Credits implements Screen{
         main.batch.begin();
         	font.draw(main.batch, "Dit spel is gemaakt door", 0, 300);
         	font.draw(main.batch, " Francesco Gabrielle", 0, 200);
+        	font.draw(main.batch, "[TERUG]", 0, 67);
         main.batch.end();
 		
 	}
@@ -72,6 +73,13 @@ public class Credits implements Screen{
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
             }
         }
+        if(Gdx.input.justTouched()){
+        	if(Gdx.input.getX() >= 0 && Gdx.input.getX() <= 200
+                    && Gdx.input.getY() >= 565 && Gdx.input.getY() <= 640){
+        		MainMenu.hasStartedTheme = true;
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(main));
+            	}
+            }
     }
 
 	@Override

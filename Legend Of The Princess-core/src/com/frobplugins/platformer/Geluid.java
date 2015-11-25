@@ -1,5 +1,6 @@
 package com.frobplugins.platformer;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -14,6 +15,7 @@ public class Geluid implements Screen{
 	
 	public static int Volume = 100;
 	private OrthographicCamera camera;
+	private OrthographicCamera reset_camera;
     private BitmapFont font;
     private FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -31,6 +33,9 @@ public class Geluid implements Screen{
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 320, 240);
         camera.update();
+        reset_camera = new OrthographicCamera();
+        reset_camera.setToOrtho(false, 640, 640);
+        reset_camera.update();
         parameter.borderColor = Color.WHITE;
         parameter.color = Color.BLACK;
         parameter.borderWidth = 1;
@@ -45,6 +50,7 @@ public class Geluid implements Screen{
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
+        reset_camera.update();
         Volume();
         main.batch.setProjectionMatrix(camera.combined);
         main.batch.begin();
@@ -174,9 +180,10 @@ public class Geluid implements Screen{
             	}
             	
             //The [TERUG] button
-            } else if(Gdx.input.getX() >= 0 && Gdx.input.getX() <= 80
-                    && Gdx.input.getY() >= 480 && Gdx.input.getY() <= 640){
-            	System.out.println("Test");
+            } else if(Gdx.input.getX() >= 0 && Gdx.input.getX() <= 160
+                    && Gdx.input.getY() >= 575 && Gdx.input.getY() <= 640){
+            	main.batch.setProjectionMatrix(reset_camera.combined);
+            	((Game) Gdx.app.getApplicationListener()).setScreen(new Options(main));
             }
         }
     }
