@@ -20,11 +20,18 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.physics.box2d.ContactImpulse;
+import com.badlogic.gdx.physics.box2d.ContactListener;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class Box2D implements Screen,InputProcessor{
+import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
+
+public class Box2D implements Screen{
 	World world = new World(new Vector2(0, -9.82f), true);
 	private Box2DDebugRenderer b2dr;
 	private OrthographicCamera camera;
@@ -33,75 +40,83 @@ public class Box2D implements Screen,InputProcessor{
 	private OrthogonalTiledMapRenderer tmr;
 	float tileSize = 64;
 	private Body player;
+	private Body ground;
 	Texture playerTexture;
 	Sprite sprite;
 	private float torque = 0;
 	private float PPM = 100;
-	SpriteBatch batch;
+	private boolean canJump = false;
 	
 	@Override
 	public void show() {
 		SoundManager.theme.stop();
-		Gdx.input.setInputProcessor(this);
 		b2dr = new Box2DDebugRenderer();
 		cam = new OrthographicCamera();
 		cam.setToOrtho(false, 640, 640);
-		BodyDef bdef = new BodyDef();
-		FixtureDef fdef = new FixtureDef();
-		batch = new SpriteBatch();
 		
-		bdef.position.set(2.4f * tileSize / PPM , 22 * tileSize / PPM );
+		BodyDef bdef = new BodyDef();
+		createCollisionListener();
+		FixtureDef fdef = new FixtureDef();
+		
+		bdef.position.set(2.4f * tileSize  , 22 * tileSize  );
 		bdef.type = BodyType.DynamicBody;
 		player = world.createBody(bdef);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(32 / PPM , 6 / PPM  );
+		shape.setAsBox(32  , 64);
 		fdef.shape = shape;
 		player.createFixture(fdef);
+		
+		shape.setAsBox(16, 16, new Vector2(0, -64), 0);
+		fdef.shape = shape;
+		fdef.isSensor = true;
+		player.createFixture(fdef).setUserData("foot");;
+		
 		playerTexture = new Texture(Gdx.files.internal("player.png"));
 		sprite = new Sprite(playerTexture);
 		
 		//////////////////////////////////////////
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 640 / PPM, 640 / PPM);
-		map = new TmxMapLoader().load("maps/Level1.tmx");
-		tmr = new OrthogonalTiledMapRenderer(map);
-		
-		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Grass");
-		tileSize = layer.getTileWidth();
-		for(int row=0;row<layer.getHeight();row++){
+		map = new TmxMapLoader().load("maps/Level4.tmx");
+		Box2DMapObjectParser parser = new Box2DMapObjectParser();
+		parser.load(world, map);
+		parser.getBodies();
+		parser.getFixtures();
+		parser.getJoints();
+		tmr = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
+		//TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("Grass");
+		//tileSize = layer.getTileWidth();
+		/*for(int row=0;row<layer.getHeight();row++){
 			for(int col=0;col<layer.getWidth();col++){
 				Cell cell = layer.getCell(col, row);
 				
 				if(cell == null) {
-					System.out.println("found air blocks");
 					continue;
 				}
 				if(cell.getTile() == null){
-					System.out.println("found air blocks");
 					continue;
 				}
 				bdef.type = BodyType.StaticBody;
-				bdef.position.set((col + 0.5f) * tileSize / PPM,
-								  (row + 0.5f) * tileSize / PPM); 
-				ChainShape cs = new ChainShape();
-				Vector2[] v = new Vector2[3];
-				v[0] = new Vector2(-tileSize / 2 / PPM, -tileSize / 2 / PPM);
-				v[1] = new Vector2(-tileSize / 2 / PPM, tileSize / 2 / PPM);
-				v[2] = new Vector2(tileSize / 2 / PPM, tileSize / 2 / PPM);
-				cs.createChain(v);
+				bdef.position.set((col + 0.5f) * tileSize ,
+								  (row + 0.5f) * tileSize );
+				ground = world.createBody(bdef);
+				shape.setAsBox(32, 32);
 				fdef.friction = 0;
-				fdef.shape = cs;
+				fdef.shape = shape;
 				fdef.isSensor = false;
-				world.createBody(bdef).createFixture(fdef);
+				ground.createFixture(fdef);
 			}
-		}
+		}*/
 	}
 
+	/* (non-Javadoc)
+	 * @see com.badlogic.gdx.Screen#render(float)
+	 */
 	@Override
 	public void render(float delta) {
 		update(delta);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		player.setLinearVelocity(player.getLinearVelocity().x, player.getLinearVelocity().y);
 		camera.update();
 		camera.position.set(player.getPosition().x, player.getPosition().y, 0);
 		camera.update();
@@ -109,31 +124,89 @@ public class Box2D implements Screen,InputProcessor{
 		float bgY = camera.position.y - 320;
 		cam.position.x = camera.position.x;
 		cam.position.y = camera.position.y;
-		System.out.println(player.getPosition().y);
 		
 		tmr.getBatch().begin();
 			tmr.getBatch().draw(Assets.bg, bgX, bgY);
 		tmr.getBatch().end();
 		cam.update();
-		tmr.setView(cam);
+		tmr.setView(camera);
 		tmr.render();
 		
-		batch.begin();
-			batch.draw(sprite, player.getPosition().x - 32, player.getPosition().y - 64);
-		batch.end();
-		
+		tmr.getBatch().begin();
+			tmr.getBatch().draw(sprite, player.getPosition().x - 32, player.getPosition().y - 64);
+		tmr.getBatch().end();
 		b2dr.render(world, camera.combined);
+		if(!Gdx.input.isKeyPressed(Input.Keys.LEFT) && !Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !Gdx.input.isKeyPressed(Input.Keys.UP)){
+			player.setLinearVelocity(0, -1000);
+		}
+		System.out.println(player.getLinearVelocity().y);
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) 
+			player.setLinearVelocity(1000, player.getLinearVelocity().y);
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT))
+        	player.setLinearVelocity(-1000, -player.getLinearVelocity().y);
+        if(canJump){
+	        if(Gdx.input.isKeyJustPressed(19)){
+		        player.applyForceToCenter(0, 20000, true);
+	       }
+        }
+        if(player.getLinearVelocity().y <= 105 && player.getLinearVelocity().y > 0)
+		      player.setLinearVelocity(player.getLinearVelocity().x, -1000);
 	}
 	
 	public void update(float delta){
 		world.step(delta, 1, 1);
 	}
+	
+	private void createCollisionListener() {
+        world.setContactListener(new ContactListener() {
+            @Override
+            public void beginContact(Contact contact) {
+                Fixture fixtureA = contact.getFixtureA();
+                Fixture fixtureB = contact.getFixtureB();
+                boolean sensorA = fixtureA.isSensor();
+                boolean sensorB = fixtureB.isSensor();
+                if(sensorA && sensorB){
+                	return;
+                }else{
+                	if(fixtureA.getUserData() != null && fixtureA.getUserData().equals("foot")){
+                		canJump = true;
+                	}
+                	if(fixtureB.getUserData() != null && fixtureA.getUserData().equals("foot")){
+                		canJump = true;
+                	}
+                }
+            }
+
+            @Override
+            public void endContact(Contact contact) {
+                Fixture fixtureA = contact.getFixtureA();
+                Fixture fixtureB = contact.getFixtureB();
+                boolean sensorA = fixtureA.isSensor();
+                boolean sensorB = fixtureB.isSensor();
+                if(sensorA && sensorB){
+                	return;
+                }else{
+                	
+                }
+            }
+
+            @Override
+            public void preSolve(Contact contact, Manifold oldManifold) {
+            }
+
+            @Override
+            public void postSolve(Contact contact, ContactImpulse impulse) {
+            }
+
+        });
+    }
 
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
+		camera.viewportWidth = width / 25;
+		camera.viewportHeight = height / 25;
+		camera.update();
 	}
 
 	@Override
@@ -159,62 +232,4 @@ public class Box2D implements Screen,InputProcessor{
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public boolean keyDown(int arg0) {
-		if(arg0 == Input.Keys.RIGHT) 
-            player.setLinearVelocity(10f, 0f);
-        if(arg0 == Input.Keys.LEFT)
-        	player.setLinearVelocity(-10f,0f);
-
-        if(arg0 == Input.Keys.UP)
-        	player.applyForceToCenter(0f,100f,true);
-        if(arg0 == Input.Keys.DOWN)
-        	player.applyForceToCenter(0f, -100f, true);
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean keyUp(int arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int arg0, int arg1, int arg2, int arg3) {
-		// TODO Auto-generated method stub
-		return false;
-	} 
-	
-	
 }

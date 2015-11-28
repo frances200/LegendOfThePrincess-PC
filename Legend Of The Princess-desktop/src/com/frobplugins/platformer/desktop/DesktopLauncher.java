@@ -9,8 +9,9 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new Main(), config);
 		config.title = "Legend of The Princess ALPHA v0.1";
-		config.width = 640;
-		config.height = 640;
-		config.resizable = false;
+		config.fullscreen = false;
+		config.resizable =  false;
+		config.width = 1024;
+		config.height = 720;
 	}
 }

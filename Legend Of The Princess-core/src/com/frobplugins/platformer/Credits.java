@@ -63,19 +63,13 @@ public class Credits implements Screen{
         	font.draw(main.batch, " Francesco Gabrielle", 0, 200);
         	font.draw(main.batch, "[TERUG]", 0, 67);
         main.batch.end();
-		
+        clickListener();
 	}
 
     public void clickListener(){
         if(Gdx.input.justTouched()){
-            if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
-                    && Gdx.input.getY() >= 310 && Gdx.input.getY() <= 400){
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
-            }
-        }
-        if(Gdx.input.justTouched()){
         	if(Gdx.input.getX() >= 0 && Gdx.input.getX() <= 200
-                    && Gdx.input.getY() >= 565 && Gdx.input.getY() <= 640){
+                    && Gdx.input.getY() >= 570 && Gdx.input.getY() <= 620){
         		MainMenu.hasStartedTheme = true;
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu(main));
             	}

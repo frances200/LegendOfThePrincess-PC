@@ -85,11 +85,9 @@ public class LevelScreen implements Screen,InputProcessor{
 				Cell cell = PadTeLopen.getCell(col, row);
 				
 				if(cell == null) {
-					System.out.println("found air blocks");
 					continue;
 				}
 				if(cell.getTile() == null){
-					System.out.println("found air blocks");
 					continue;
 				}
 				bdef.type = BodyType.StaticBody;
@@ -109,11 +107,9 @@ public class LevelScreen implements Screen,InputProcessor{
 				Cell cell = Level1.getCell(col, row);
 				
 				if(cell == null) {
-					System.out.println("found air blocks");
 					continue;
 				}
 				if(cell.getTile() == null){
-					System.out.println("found air blocks");
 					continue;
 				}
 				bdef.type = BodyType.StaticBody;
@@ -213,10 +209,10 @@ public class LevelScreen implements Screen,InputProcessor{
                 if(sensorA && sensorB){
                 	return;
                 }else{
-                	if(fixtureA == player.getFixtureList().get(0)){
+                	if(fixtureA == player.getFixtureList().get(0) && fixtureB == level1Collider.getFixtureList().get(0)){
                 		enableLevel1 = false;
                 	}
-                	if(fixtureB == player.getFixtureList().get(0)){
+                	if(fixtureB == player.getFixtureList().get(0) && fixtureA == level1Collider.getFixtureList().get(0)){
                 		enableLevel1 = false;
                 	}
                 }
@@ -233,7 +229,6 @@ public class LevelScreen implements Screen,InputProcessor{
 
         });
     }
-	
 
 	@Override
 	public void resize(int width, int height) {
