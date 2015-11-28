@@ -10,5 +10,14 @@
 	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-bullet-1.7.0.jar"/>
 	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-controllers-1.7.0.jar"/>
 	<classpathentry kind="lib" path="D:/menu voor frances/Project/Core/gdx-freetype-1.7.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-0.13.2.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-0.13.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-0.13.2-sources.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-box2d-0.13.2.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-box2d-0.13.2-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-box2d-0.13.2-sources.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-box2d-gwt-0.11.0.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-box2d-gwt-0.11.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="D:/menu voor frances/Project/extra/libgdx-utils-box2d-gwt-0.11.0-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
