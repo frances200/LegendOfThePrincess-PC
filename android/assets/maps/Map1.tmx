@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="40">
+ <tileset firstgid="1" name="rpg_maker_vx_rtp_tileset_by_telles0808" tilewidth="32" tileheight="32" tilecount="2016">
+  <image source="sprite sheets/rpg_maker_vx_rtp_tileset_by_telles0808.png" width="1024" height="2016"/>
+ </tileset>
+ <tileset firstgid="2017" name="thaenn__s_tileset_by_hypersnake22-d2lzncv" tilewidth="32" tileheight="32" tilecount="1632">
+  <image source="sprite sheets/thaenn__s_tileset_by_hypersnake22-d2lzncv.png" trans="ffffff" width="256" height="6536"/>
+ </tileset>
+ <tileset firstgid="3649" name="Doors" tilewidth="32" tileheight="32" tilecount="192">
+  <image source="sprite sheets/Doors.png" trans="ffffff" width="384" height="512"/>
+ </tileset>
+ <tileset firstgid="3841" name="Bed" tilewidth="32" tileheight="32" tilecount="1">
+  <image source="sprite sheets/Bed.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3842" name="Spikes" tilewidth="32" tileheight="32" tilecount="4">
+  <image source="sprite sheets/Spikes.png" width="64" height="64"/>
+ </tileset>
+ <layer name="BG" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt1KEBgEAAxDDcO5DsvymaCa4iIiO0576uQ8ZDykvKuk/8qmzdJ35Vtu4Tvypb94lfla37xK/K1n3iV2XrPvGrsnWf+FXZuk/8qmzdJ35Vtu4Tvypb94lfla37xK/K1n3iV2XrPvGrsnWf+FXZuk/8qmzdJ35Vtu4Tvypb94lfla37xK/K1n3iV2XrPvGrsnWf+FXZuk/8qmzdJ35Vtu4Tvypb94lfla37xK/K1n3iV2XrPvGrsnWf+FXZuk/8qmzdJ35Vtu4Tvypb94lfla37xK/K1n3iV2XrPvGrsnWf+FXZuk/8qmzdJ35Vtu4Tvypb94lfla37xK/K1n3iV2XrPvGrsnWf+FXZuk/+PsHlae0=
+  </data>
+ </layer>
+ <layer name="Grond/Plafond" width="100" height="100" opacity="0.9">
+  <data encoding="base64" compression="zlib">
+   eJzt10FKA0EYBWE3cRd33v8QXlBEBokgzmgnVd1TP3w70TDhFePl5enpEo1rVF6jQu8z9cqM3mfqlRm9z9QrM3qfqVdm9D5Tr8zofaZezW707d3uf+7t+QvdoCOI7+O643d+fLbteX5/zntu+7m+j3G399kfOfp5z/x93OPo551Ps3wf9Pvdo2xHf47ed2+bS3+O39D7rFf1yozeZ72qV2b0PutVvTKj91mv6pXZX3c/063Wq5WO7tGIXq10dI9G9Go7estnsNK7yQpWejdZQb1yqVcu9cqlXrnUKxd6nzneq7h6lXp1VvQ+c85ezfKOSO/zUWb5n5be56PM8j8tvc96Va/M6H3Wq3plRu+zXtUrM3qf9apemdH7rFf1yozeZ72qV2b0PuvV8V7d6y53/N0//R26RyN6tdLRPRrRq5WO7tGIXsXVq7h6lXp1VvQ+U6/M6H2mXpnR+0y9MqP3mXplRu8z9cqM3mfqlRm9z9QrM3qfqVdm9D5Tr8zofaZemdH7TL0yo/eZemVG7zP1yozeZ+qVGb3P1Cszep+59Q5dsOaD
+  </data>
+ </layer>
+ <layer name="Assets" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt3L1rFEEYx/E1t7vXKdFCLZT7F6KF2qW2i6eF2FhLXtCIIjaK7d3FqLVGAmKhgmfaawW1MgbFN8RGwU4NFtr4G3aG21vvsmKhD+v3Aw8zNzs7u5lnB8LAbhQBAAAAAAAAAIC/abz+r+8AeRPKx+PaYNuTwm93/Hma1V3pfh9TeT3NStf/w1i//8Ha8PpH9Tma/HoPqxrjmWIt3fhez+XOfT82ul8VfNdc/FDsGrFevunY0zQrnfOF8tbmrGzo/BPKwWu1v0mzeqM+2OdRLkc99fmi+KpYz+Vj0Z/zUm2vFC/SwXPdWDO1LKpg05YsRtLf31C8yz2Tnzd4frt+rieH5DO0hT4d/d6tiHX9RDGb9GOhHi25Pq59KRmM4vXatSxgQ5XWRxWwPmxhfdjC+rCF9WEL68MW1octrA9bWB+2sD5sqeL6eOj3SaeG7Dv1cvtVN0r2Xsv0CueH/cJi++9w9+r2d6u0PsKzFfZcg7bb01NcVrR8fcHXO0l2vOX39t5qLg+pfiWOoqZiUvUpleNq3+rnueXH6uTGaefGbueu4fqEvDdVP6xY1HhXFdfi/jWdqu3vhmcr7LmGfdaZ3F7rtGIu6bdP+/qcz4fbnz2leldzNa84rvpJlROasz1+3opjFMedzY3p2hO/5zyv+mnFfY33QLESD95/1fZ3q/RsVQH5sIV82EI+bCEftpAPW8iHLeQDAAAARfyPaAv5sIV82EI+bCEftpAPW8iHLeTDFvJhC/mwhXzYQj5sIR+2kA9byIct5KPcqO/ufPLtl0rm72LJ8XC+e2+FfJQL75PsrQ+Wt337cq3/DaFWGkVtRcd9bymOojXFTR1fjbPYrn47FDvr/e8FLVf0+z5/4kIyOs769z3C+yTNevZtoKaf+5XCez9n1P+O4q7invvekuZ/XXHEfX8pzmKfzt2vOKDYVnh/q0s+AAAAAAAAAAAAAAAAAAAAAAAAAAD/mZ+wVaLF
+  </data>
+ </layer>
+ <layer name="extra spikes" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzty7ENAAAEADADs/+/dQOjtHsjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgI+q9yf7fgEAAAAAAAAAAAAAAADgiwFnFgA8
+  </data>
+ </layer>
+ <objectgroup name="Colliders">
+  <object id="1" name="Tafels_werkplek" type="object" x="1600.88" y="576.938" width="126.188" height="31.0625">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="7" name="Briefje_sensor" type="object" x="703.879" y="555.455" width="32.1212" height="52.9697">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="8" name="Anvil_werkplek" type="object" x="1312.18" y="580.909" width="32" height="26.9091">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="10" name="Spikes_werkplek1" type="object" x="1344.36" y="591.091" width="63.2727" height="16.7273">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="11" name="Bureau_werkplek" type="object" x="1408" y="576.182" width="96.1818" height="31.4545">
+   <properties>
+    <property name="BodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="13" name="Spikes_werkplek2" type="object" x="1567.83" y="591.87" width="32.9565" height="16.1304">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="15" name="Spikes_keuken1" type="object" x="1504" y="1040" width="32.1818" height="16">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="16" name="Aanrecht1" type="object" x="1120.97" y="1024.18" width="381.942" height="31.8182">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="17" name="Spikes_keuken2" type="object" x="832" y="1040" width="31.9375" height="16">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="18" name="Aanrecht2" type="object" x="447.969" y="1024.19" width="352.075" height="31.7812">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="19" name="Spikes_keuken3" type="object" x="415.875" y="1039.94" width="32" height="16">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="21" name="DoorCollider1" type="object" x="1792.02" y="544" width="31.9778" height="63.875">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="22" name="DoorCollider2" type="object" x="383.969" y="992" width="31.9688" height="63.9688">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="23" name="DoorCollider3" type="object" x="1183.96" y="2015.91" width="32.087" height="64.0435">
+   <properties>
+    <property name="bodyType" value="Stati"/>
+   </properties>
+  </object>
+  <object id="27" name="Woonkamer" type="object" x="1184" y="2016">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 0,64 640,64 640,-32 0,-32 0,0"/>
+  </object>
+  <object id="28" name="Keuken" type="object" x="384" y="960">
+   <properties>
+    <property name="bodyType" value="StaticB"/>
+   </properties>
+   <polyline points="0,0 0,96 1440,96 1440,0 0,0"/>
+  </object>
+  <object id="30" name="SlaapEnWerkkamer" type="object" x="288" y="480">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 0,128 1536,128 1536,0 960,0 960,60.9375 928.062,60.9375 928,32 672,32 672.091,60.9091 640,61.0909 640,0 0,0"/>
+  </object>
+  <object id="33" name="Spikes_woonkamer2" type="object" x="1663.97" y="2063.82" width="32" height="16.1875">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="36" name="Spikes_woonkamer1" type="object" x="1727.95" y="2063.83" width="32" height="16.1875">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="37" name="Stoel" type="object" x="1696" y="2057.88" width="32" height="22.125">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="39" name="Spikes_woonkamer3" type="object" x="1248" y="2063.91" width="32" height="16.0909">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
