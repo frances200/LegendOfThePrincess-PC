@@ -44,6 +44,8 @@ public class Map1 implements Screen{
 		parser.getFixtures().get("SlaapEnWerkkamer").setUserData("SlaapEnWerkkamer");
 		parser.getFixtures().get("foot").setUserData("foot");
 		sprite_player.setSize(32 * parser.getUnitScale(), 64 * parser.getUnitScale());
+		Assets.sprite_briefje.setSize(640 * parser.getUnitScale(), 640 * parser.getUnitScale());
+		Assets.sprite_briefje.setPosition(0, 0);
 		renderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 		camera = new OrthographicCamera();
 		camera.position.set(new Vector2(11, 82.5f), 0);
@@ -61,6 +63,11 @@ public class Map1 implements Screen{
 		
 		renderer.getBatch().begin();
 			sprite_player.draw(renderer.getBatch());
+			
+			if(CollisionListener.isShowingBrief==true) {
+				Assets.sprite_briefje.draw(renderer.getBatch());
+				System.out.println("ding");
+			}
 		renderer.getBatch().end();
 		
 		b2dr.render(world, camera.combined);
@@ -78,6 +85,9 @@ public class Map1 implements Screen{
 			if(Gdx.input.isKeyJustPressed(Keys.W)){
 				player.applyForceToCenter(new Vector2(player.getLinearVelocity().x, 300f), false);
 			}
+		}
+		if(!Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+			CollisionListener.isShowingBrief=false;
 		}
 		camera.update();
 	}

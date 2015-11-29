@@ -11,6 +11,9 @@ public class CollisionListener implements ContactListener{
 	Map1 map1 = new Map1();
 	public static boolean door1;
 	public static boolean canJump;
+	public static boolean isShowingBrief = false;
+	public static boolean hasShownBrief = false;
+	
 	@Override
 	public void beginContact(Contact arg0) {
 		Fixture fa = arg0.getFixtureA();
@@ -21,7 +24,7 @@ public class CollisionListener implements ContactListener{
         		door1 = true;
         	}
         	if(fb.getUserData() != null && fb.getUserData().equals("Briefje")){
-        		System.out.println("oke");
+        			isShowingBrief=true;
         	}
         }
         if(fb.getUserData() != null && fb.getUserData().equals("Player")){
@@ -29,7 +32,7 @@ public class CollisionListener implements ContactListener{
         		door1 = true;
         	}
         	if(fa.getUserData() != null && fa.getUserData().equals("Briefje")){
-        		System.out.println("oke");
+        			isShowingBrief=true;
         	}
         }
         if(fa.getUserData() != null && fa.getUserData().equals("foot")){
@@ -54,7 +57,7 @@ public class CollisionListener implements ContactListener{
         		door1 = false;
         	}
         	if(fb.getUserData() != null && fb.getUserData().equals("Briefje")){
-        		System.out.println("oke");
+        			isShowingBrief=false;
         	}
         }
         if(fb.getUserData() != null && fb.getUserData().equals("Player")){
@@ -62,7 +65,7 @@ public class CollisionListener implements ContactListener{
         		door1 = false;
         	}
         	if(fa.getUserData() != null && fa.getUserData().equals("Briefje")){
-        		System.out.println("oke");
+        			isShowingBrief=false;
         	}
         }
         if(fa.getUserData() != null && fa.getUserData().equals("foot")){

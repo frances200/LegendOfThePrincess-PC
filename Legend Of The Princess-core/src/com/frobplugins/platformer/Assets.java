@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
  * Created by Gebruiker on 7-10-2015.
@@ -30,6 +31,9 @@ public class Assets {
     public static Texture volume_80;
     public static Texture volume_90;
     public static Texture volume_100;
+    
+    public static Texture briefje;
+    public static Sprite sprite_briefje;
 
     public static void loadAssets(){
         splash = new Texture(Gdx.files.internal("FrobPlugins_splash.png"));
@@ -53,6 +57,9 @@ public class Assets {
         volume_80 = new Texture(Gdx.files.internal("volume/volume_80.png"));
         volume_90 = new Texture(Gdx.files.internal("volume/volume_90.png"));
         volume_100 = new Texture(Gdx.files.internal("volume/volume_100.png"));
+        
+        briefje = new Texture(Gdx.files.internal("Brief.png"));
+        sprite_briefje = new Sprite(briefje);
         		
     }
 }
