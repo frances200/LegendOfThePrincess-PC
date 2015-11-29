@@ -23,7 +23,7 @@ public class Main extends Game implements ApplicationListener {
 	public void create () {
         Assets.loadAssets();
         batch = new SpriteBatch();
-        setScreen(new Testclass());
+        setScreen(new Map1());
 	}
 
     @Override

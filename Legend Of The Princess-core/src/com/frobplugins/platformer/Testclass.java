@@ -23,16 +23,19 @@ public class Testclass implements Screen{
 	private OrthographicCamera camera;
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
-	private Body player;
+	public Body player;
+	public Box2DMapObjectParser parser;
 	private Texture playerTex = new Texture(Gdx.files.internal("player.png"));
 	private Sprite sprite_player = new Sprite(playerTex);
+	public boolean door1= false;
 	
 	@Override
 	public void show() {
+		world.setContactListener(new CollisionListener());
 		camera = new OrthographicCamera();
 		b2dr = new Box2DDebugRenderer();
-		map = new TmxMapLoader().load("maps/Level4.tmx");
-		Box2DMapObjectParser parser = new Box2DMapObjectParser(.03125f);
+		map = new TmxMapLoader().load("maps/Map1.tmx");
+		parser = new Box2DMapObjectParser(.03125f);
 		parser.load(world, map);
 		parser.getBodies();
 		parser.getFixtures();
@@ -49,14 +52,14 @@ public class Testclass implements Screen{
 	public void render(float delta) {
 		update(delta);
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-		sprite_player.setPosition(player.getPosition().x, player.getPosition().y);
-		if(player.getPosition().x >= 20){
+		//sprite_player.setPosition(player.getPosition().x, player.getPosition().y);
+		/*if(player.getPosition().x >= 20){
 			camera.position.x = sprite_player.getX();
 			camera.position.y = sprite_player.getY();
 		}else{
 			camera.position.y = player.getPosition().y;
 			camera.position.x = 20;
-		}
+		}*/
 		System.out.println(player.getPosition().x);
 		camera.update();
 		float bgX = camera.position.x;
@@ -86,7 +89,7 @@ public class Testclass implements Screen{
 			player.setLinearVelocity(10f, player.getLinearVelocity().y);
 		}
 		if(!Gdx.input.isKeyPressed(Keys.D) && !Gdx.input.isKeyPressed(Keys.A)){
-			player.setLinearVelocity(0f, player.getLinearVelocity().y);
+		//	player.setLinearVelocity(0f, player.getLinearVelocity().y);
 		}
 	}
 
