@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="46">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="48">
  <tileset firstgid="1" name="rpg_maker_vx_rtp_tileset_by_telles0808" tilewidth="32" tileheight="32" tilecount="2016">
   <image source="rpg_maker_vx_rtp_tileset_by_telles0808.png" width="1024" height="2016"/>
  </tileset>
@@ -157,6 +157,12 @@
   <object id="44" name="Player" type="object" x="352" y="496" width="32" height="64">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
+   </properties>
+  </object>
+  <object id="47" name="foot" type="fixture" x="356.273" y="554.182" width="24" height="11.5455">
+   <properties>
+    <property name="body" value="Player"/>
+    <property name="isSensor" value="true"/>
    </properties>
   </object>
  </objectgroup>

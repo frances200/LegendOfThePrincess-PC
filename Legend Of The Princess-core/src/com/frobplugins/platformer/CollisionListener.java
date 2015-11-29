@@ -10,6 +10,7 @@ public class CollisionListener implements ContactListener{
 	
 	Map1 map1 = new Map1();
 	public static boolean door1;
+	public static boolean canJump;
 	@Override
 	public void beginContact(Contact arg0) {
 		Fixture fa = arg0.getFixtureA();
@@ -29,6 +30,16 @@ public class CollisionListener implements ContactListener{
         	}
         	if(fa.getUserData() != null && fa.getUserData().equals("Briefje")){
         		System.out.println("oke");
+        	}
+        }
+        if(fa.getUserData() != null && fa.getUserData().equals("foot")){
+        	if(!fb.isSensor()){
+        		canJump = true;
+        	}
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("foot")){
+        	if(!fa.isSensor()){
+        		canJump = true;
         	}
         }
 	}
@@ -52,6 +63,16 @@ public class CollisionListener implements ContactListener{
         	}
         	if(fa.getUserData() != null && fa.getUserData().equals("Briefje")){
         		System.out.println("oke");
+        	}
+        }
+        if(fa.getUserData() != null && fa.getUserData().equals("foot")){
+        	if(!fb.isSensor()){
+        		canJump = false;
+        	}
+        }
+        if(fb.getUserData() != null && fb.getUserData().equals("foot")){
+        	if(!fa.isSensor()){
+        		canJump = false;
         	}
         }
 	}

@@ -41,6 +41,8 @@ public class Map1 implements Screen{
 		parser.getFixtures().get("Player").setUserData("Player");
 		parser.getFixtures().get("DoorCollider1").setUserData("Door1");
 		parser.getFixtures().get("Briefje_sensor").setUserData("Briefje");
+		parser.getFixtures().get("SlaapEnWerkkamer").setUserData("SlaapEnWerkkamer");
+		parser.getFixtures().get("foot").setUserData("foot");
 		sprite_player.setSize(32 * parser.getUnitScale(), 64 * parser.getUnitScale());
 		renderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 		camera = new OrthographicCamera();
@@ -72,8 +74,10 @@ public class Map1 implements Screen{
 		if(!Gdx.input.isKeyPressed(Keys.D) && !Gdx.input.isKeyPressed(Keys.A)){
 			player.setLinearVelocity(0f, player.getLinearVelocity().y);
 		}
-		if(Gdx.input.isKeyJustPressed(Keys.W)){
-			player.applyForceToCenter(new Vector2(player.getLinearVelocity().x, 300f), false);
+		if(CollisionListener.canJump){
+			if(Gdx.input.isKeyJustPressed(Keys.W)){
+				player.applyForceToCenter(new Vector2(player.getLinearVelocity().x, 300f), false);
+			}
 		}
 		camera.update();
 	}
