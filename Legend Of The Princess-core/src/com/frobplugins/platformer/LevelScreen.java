@@ -170,7 +170,7 @@ public class LevelScreen implements Screen,InputProcessor{
 		}else{
 			if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
 	        	System.out.println("Pressed ENTER");
-	        	((Game) Gdx.app.getApplicationListener()).setScreen(new Box2D());
+	        	((Game) Gdx.app.getApplicationListener()).setScreen(new Map1());
 	        }
 		}
 	}

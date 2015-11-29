@@ -45,7 +45,6 @@ public class Map1 implements Screen{
 		parser.getFixtures().get("foot").setUserData("foot");
 		sprite_player.setSize(32 * parser.getUnitScale(), 64 * parser.getUnitScale());
 		Assets.sprite_briefje.setSize(640 * parser.getUnitScale(), 640 * parser.getUnitScale());
-		Assets.sprite_briefje.setPosition(0, 0);
 		renderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 		camera = new OrthographicCamera();
 		camera.position.set(new Vector2(11, 82.5f), 0);
@@ -58,35 +57,36 @@ public class Map1 implements Screen{
 		sprite_player.setPosition(player.getPosition().x, player.getPosition().y);
 		camera.position.x = sprite_player.getX();
 		camera.position.y = sprite_player.getY();
+		Assets.sprite_briefje.setPosition(camera.position.x - (320 * parser.getUnitScale()), camera.position.y - (320 * parser.getUnitScale()));
 		renderer.setView(camera);
 		renderer.render();
 		
 		renderer.getBatch().begin();
 			sprite_player.draw(renderer.getBatch());
 			
-			if(CollisionListener.isShowingBrief==true) {
+			if(CollisionListener.isShowingBrief) {
 				Assets.sprite_briefje.draw(renderer.getBatch());
-				System.out.println("ding");
 			}
 		renderer.getBatch().end();
 		
-		b2dr.render(world, camera.combined);
-		
-		if(Gdx.input.isKeyPressed(Keys.A)){
-			player.setLinearVelocity(-2f, player.getLinearVelocity().y);
-		}
-		if(Gdx.input.isKeyPressed(Keys.D)){
-			player.setLinearVelocity(2f, player.getLinearVelocity().y);
-		}
-		if(!Gdx.input.isKeyPressed(Keys.D) && !Gdx.input.isKeyPressed(Keys.A)){
-			player.setLinearVelocity(0f, player.getLinearVelocity().y);
-		}
-		if(CollisionListener.canJump){
-			if(Gdx.input.isKeyJustPressed(Keys.W)){
-				player.applyForceToCenter(new Vector2(player.getLinearVelocity().x, 300f), false);
+		//b2dr.render(world, camera.combined);
+		if(!CollisionListener.isShowingBrief){
+			if(Gdx.input.isKeyPressed(Keys.A)){
+				player.setLinearVelocity(-2f, player.getLinearVelocity().y);
+			}
+			if(Gdx.input.isKeyPressed(Keys.D)){
+				player.setLinearVelocity(2f, player.getLinearVelocity().y);
+			}
+			if(!Gdx.input.isKeyPressed(Keys.D) && !Gdx.input.isKeyPressed(Keys.A)){
+				player.setLinearVelocity(0f, player.getLinearVelocity().y);
+			}
+			if(CollisionListener.canJump){
+				if(Gdx.input.isKeyJustPressed(Keys.W)){
+					player.applyForceToCenter(new Vector2(player.getLinearVelocity().x, 300f), false);
+				}
 			}
 		}
-		if(!Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
+		if(Gdx.input.isKeyJustPressed(Keys.ESCAPE)) {
 			CollisionListener.isShowingBrief=false;
 		}
 		camera.update();

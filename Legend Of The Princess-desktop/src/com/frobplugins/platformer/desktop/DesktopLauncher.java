@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		config.title = "Legend of The Princess ALPHA v0.1";
 		config.fullscreen = false;
 		config.resizable =  false;
-		config.width = 1024;
-		config.height = 720;
+		config.width = 640;
+		config.height = 640;
 	}
 }
