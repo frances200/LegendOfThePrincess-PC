@@ -48,6 +48,9 @@ public class Map1 implements Screen{
 		renderer = new OrthogonalTiledMapRenderer(map, parser.getUnitScale());
 		camera = new OrthographicCamera();
 		camera.position.set(new Vector2(11, 82.5f), 0);
+		SoundManager.theme.stop();
+		SoundManager.Song_Level1.play();
+		SoundManager.Song_Level1.setVolume(Geluid.Volume);
 	}
 	
 	@Override
