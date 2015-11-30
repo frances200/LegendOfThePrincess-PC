@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="500" height="100" tilewidth="32" tileheight="32" nextobjectid="11">
+ <tileset firstgid="1" name="sheet1" tilewidth="32" tileheight="32" tilecount="375">
+  <image source="../../../../Desktop/sprite sheets/pokemon_lost_souls_tiles_update_3_by_lostsoulsdev-d5kpkld.png" width="800" height="496"/>
+  <terraintypes>
+   <terrain name="Nieuw Terrein" tile="76"/>
+  </terraintypes>
+ </tileset>
+ <tileset firstgid="376" name="sheet2" tilewidth="32" tileheight="32" tilecount="2016">
+  <image source="../../../../Desktop/sprite sheets/rpg_maker_vx_rtp_tileset_by_telles0808.png" width="1024" height="2016"/>
+  <tile id="1086">
+   <animation>
+    <frame tileid="1081" duration="1000"/>
+    <frame tileid="1083" duration="1000"/>
+    <frame tileid="1085" duration="1000"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="2392" name="sheet3" tilewidth="32" tileheight="32" tilecount="1024">
+  <image source="../../../../Desktop/sprite sheets/terrain_atlas.png" width="1024" height="1024"/>
+  <tile id="998">
+   <animation>
+    <frame tileid="451" duration="1000"/>
+    <frame tileid="452" duration="1"/>
+    <frame tileid="453" duration="1000"/>
+   </animation>
+  </tile>
+  <tile id="999">
+   <animation>
+    <frame tileid="451" duration="1000"/>
+    <frame tileid="453" duration="1000"/>
+   </animation>
+  </tile>
+ </tileset>
+ <layer name="bomen" width="500" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2kEKwjAQQNFu58J6E71JvUm9Sd1aEBcGYhdpp1Heg/B3AbsZBjMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL6cYhnPsXwBgO+WcvSznmlAAYDvlnB2Xc0uovR0A2r3nZzlnp+XcE2pvB4B27/lZztl5OY+Eru3tAEBduZeXczbL2t4OwH/Jem/dW/f6HuVefpS1vf3o76+qqtv2EjnvrXtrTeu9Y3zu5b2Z4vv/66qq+psdI+e9dW+tab13imP38jVzfP9/XVVVf7NT5Ly37q01rffO0edeXjr6+6uq6radI+e9dW+t2eve3vz77wMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGj1BAnl0K0=
+  </data>
+ </layer>
+ <layer name="Tilelaag 1" width="500" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2k0KgkAAhuHZpFB3blfdwmN0FjtKu5AIarLCn2Zseh54F7qQ2X2IhgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMzpXOU+AQAwxXaTJgBgPvHONomy6QAwj5T7/WrTvbcDwHi5t9x7OwBMs9Qtt+kADNVW1/+42wX+y72rQzjUj9f76N5YS99ymw5Qpr5vrKV3WodwXD3X3Z/67Nw7PXTTJUll1PxZ3Wbfire8K/f5JEnS5+73vK/c55MkSe+z5ZIklZEdlyTp97PjkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiRJkiR9vwuTx801
+  </data>
+ </layer>
+ <layer name="Tilelaag 2" width="500" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2kduU1EYhmFfQMAawJBkBkxpCTUFZoQmWgrM6AqQQMIM2AWwi8CQsgrKKihb4LPkwTXY5iJdYRmeR3qlo/NLv+LRkaLbaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/7LNRaOxJW1Nu9LutKcY9F8FAPyJkbzdo2ksTaXpNOM9B4ChMp63eyIdSvNpIS16zwEAAAB+0fqXyYa0scY2/dVfAABsS81220s1fzo3f3NfvttR2r8zjaTRmu4A6DSZptJ0n/MwepKepmfpTXqb3qX37Xmv7+5b85l0Ip2seK7icHYfSUfTsXQ8TRaDmXWzN+1L+2vsQGn/wTSeJmq6A6DTXJpPC33Ow+h5epFepg/pY/qUPrfnvb67b80X09V0reK5igvZfTFdSpfTlTRXDGbWzak0m07X2JnS/rPpXDpf0x0AnVbSw/Soz3kYradX6XX6kr6mb+l7e97ru/vWfDWtpccVz1UsZfe9dD89SMtppRjMrJvr6Ua6WWO3Svtvpzvpbk13AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPC/+wE6v3G4
+  </data>
+ </layer>
+ <objectgroup name="+">
+  <object id="5" name="Patrick" type="object" x="627" y="1960" width="28.0625" height="27.875">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="9" name="Player" type="object" x="672" y="1984" width="32" height="64">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+   </properties>
+  </object>
+  <object id="10" x="624" y="2048">
+   <polyline points="0,0 0,-2048 15368,-2048 15368,0 3440,0 3440,-32 3408,-32 3408,-64 3376,-64 3376,-96 3344,-96 3344,-128 3184,-128 3184,-160 3152,-160 3152,-192 2320,-192 2320,-160 2192,-160 2192,-128 2160,-128 2160,-96 2128,-96 2128,-64 2096,-64 2096,-32 2064,-32 2064,0 1544,0 1544,-32 1472,-32 1464,-32 1464,0 1520,0 1520,32 1488,32 1488,64 1392,64 1392,32 1360,32 1360,0 1384,0 1384,-32 1336,-32 1336,0 0,0"/>
+  </object>
+ </objectgroup>
+</map>
