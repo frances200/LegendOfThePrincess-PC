@@ -12,7 +12,14 @@ public class CollisionListener implements ContactListener{
 	public static boolean door1;
 	public static boolean canJump;
 	public static boolean isShowingBrief = false;
-	public static boolean hasShownBrief = false;
+	public static boolean spikes_werkplek1;
+	public static boolean spikes_werkplek2;
+	public static boolean spikes_keuken1;
+	public static boolean spikes_keuken2;
+	public static boolean spikes_keuken3;
+	public static boolean spikes_woonkamer1;
+	public static boolean spikes_woonkamer2;
+	public static boolean spikes_woonkamer3;
 	
 	@Override
 	public void beginContact(Contact arg0) {
@@ -24,16 +31,74 @@ public class CollisionListener implements ContactListener{
         		door1 = true;
         	}
         	if(fb.getUserData() != null && fb.getUserData().equals("Briefje")){
-        			isShowingBrief=true;
+        		isShowingBrief=true;
         	}
+        	
+        	
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_werkplek1")){
+        		spikes_werkplek1=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_werkplek2")){
+        		spikes_werkplek2=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_keuken1")){
+        		spikes_keuken1=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_keuken2")){
+        		spikes_keuken2=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_keuken3")){
+        		spikes_keuken3=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_woonkamer1")){
+        		spikes_woonkamer1=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_woonkamer2")){
+        		spikes_woonkamer2=true;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_woonkamer3")){
+        		spikes_woonkamer3=true;
+        	}
+        	
+        	
+        	
         }
         if(fb.getUserData() != null && fb.getUserData().equals("Player")){
         	if(fa.getUserData() != null && fa.getUserData().equals("Door1")){
         		door1 = true;
         	}
         	if(fa.getUserData() != null && fa.getUserData().equals("Briefje")){
-        			isShowingBrief=true;
+        		isShowingBrief=true;
         	}
+        	
+        	
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_werkplek1")){
+        		spikes_werkplek1=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_werkplek2")){
+        		spikes_werkplek2=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_keuken1")){
+        		spikes_keuken1=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_keuken2")){
+        		spikes_keuken2=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_keuken3")){
+        		spikes_keuken3=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_woonkamer1")){
+        		spikes_woonkamer1=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_woonkamer2")){
+        		spikes_woonkamer2=true;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_woonkamer3")){
+        		spikes_woonkamer3=true;
+        	}
+        	
+        	
+        	
         }
         if(fa.getUserData() != null && fa.getUserData().equals("foot")){
         	if(!fb.isSensor()){
@@ -57,16 +122,77 @@ public class CollisionListener implements ContactListener{
         		door1 = false;
         	}
         	if(fb.getUserData() != null && fb.getUserData().equals("Briefje")){
-        			isShowingBrief=false;
+        		isShowingBrief=false;
         	}
+        	
+        	
+        	
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_werkplek1")){
+        		spikes_werkplek1=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_werkplek2")){
+        		spikes_werkplek2=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_keuken1")){
+        		spikes_keuken1=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_keuken2")){
+        		spikes_keuken2=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_keuken3")){
+        		spikes_keuken3=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_woonkamer1")){
+        		spikes_woonkamer1=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_woonkamer2")){
+        		spikes_woonkamer2=false;
+        	}
+        	if(fb.getUserData() != null && fb.getUserData().equals("Spikes_woonkamer3")){
+        		spikes_woonkamer3=false;
+        	}
+        	
+        	
+        	
         }
         if(fb.getUserData() != null && fb.getUserData().equals("Player")){
         	if(fa.getUserData() != null && fa.getUserData().equals("Door1")){
         		door1 = false;
         	}
         	if(fa.getUserData() != null && fa.getUserData().equals("Briefje")){
-        			isShowingBrief=false;
+        		isShowingBrief=false;
         	}
+        	
+        	
+        	
+        	
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_werkplek1")){
+        		spikes_werkplek1=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_werkplek2")){
+        		spikes_werkplek2=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_keuken1")){
+        		spikes_keuken1=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_keuken2")){
+        		spikes_keuken2=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_keuken3")){
+        		spikes_keuken3=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_woonkamer1")){
+        		spikes_woonkamer1=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_woonkamer2")){
+        		spikes_woonkamer2=false;
+        	}
+        	if(fa.getUserData() != null && fa.getUserData().equals("Spikes_woonkamer3")){
+        		spikes_woonkamer3=false;
+        	}
+        	
+        	
+        	
         }
         if(fa.getUserData() != null && fa.getUserData().equals("foot")){
         	if(!fb.isSensor()){

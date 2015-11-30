@@ -20,6 +20,7 @@ public class Assets {
     public static Texture geluid;
     public static Texture muted;
     public static Texture non_muted;
+    public static Texture DeathLevel1;
     
     public static Texture volume_10;
     public static Texture volume_20;
@@ -43,6 +44,7 @@ public class Assets {
         mainmenu = new Texture(Gdx.files.internal("menu.png"));
         opties = new Texture(Gdx.files.internal("opties.png"));
         geluid = new Texture(Gdx.files.internal("geluid.png"));
+        DeathLevel1 = new Texture(Gdx.files.internal("DeathLevel1.png"));
 
         muted = new Texture(Gdx.files.internal("muted.png"));
         non_muted = new Texture(Gdx.files.internal("non muted.png"));

@@ -15,51 +15,43 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-/**
- * Created by Gebruiker on 7-10-2015.
- */
-public class MainMenu implements Screen {
-
+public class DeathLevel1 implements Screen{
+	
     Stage stage = new Stage(new StretchViewport(320, 240));
-    Main main;
+	Main main;
+
     public static Image splashImage;
     private Viewport viewport;
-    private OrthographicCamera camera;
+	private OrthographicCamera camera;
     private BitmapFont font;
     private FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-    
-    public static boolean hasStartedTheme = false;
-
-    public MainMenu(Main main){
+	
+	
+    public DeathLevel1(Main main){
         this.main = main;
     }
-
-    @Override
-    public void show() {
+    
+	@Override
+	public void show() {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 320, 240);
         camera.update();
-        splashImage = new Image(Assets.mainmenu);
+        splashImage = new Image(Assets.DeathLevel1);
         stage.addActor(splashImage);
         splashImage.setPosition(0, 0);
-        splashImage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0.5f)));
+        splashImage.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(0f)));
         viewport = new FitViewport(320, 240, camera);
         parameter.borderColor = Color.WHITE;
         parameter.color = Color.BLACK;
         parameter.borderWidth = 2;
         parameter.size = 48;
         font = generator.generateFont(parameter);
-        SoundManager.create();
-        SoundManager.theme.setLooping(true);
-        if(hasStartedTheme == false) {
-        	SoundManager.theme.play();
-        	hasStartedTheme=true;
-        }
-    }
+		
+	}
 
-    @Override
-    public void render(float delta) {
+	@Override
+	public void render(float delta) {
         Gdx.gl20.glClearColor(0, 0, 0, 1);
         Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
@@ -67,60 +59,54 @@ public class MainMenu implements Screen {
         stage.act();
         stage.draw();
         main.batch.begin();
-            font.draw(main.batch, "Spelen", 230, 303);
-            font.draw(main.batch, "Opties", 230, 208);
-            font.draw(main.batch, "Credits", 230, 110);
+        	//font.draw(main.batch, "Geluid", 240, 430);
+        	font.draw(main.batch, "Restart", 220, 300);
             font.draw(main.batch, Gdx.input.getX()+" "+Gdx.input.getY(), 10, 100);
         main.batch.end();
-
+        
         clickListener();
-    }
+		
+	}
 
     public void clickListener(){
         if(Gdx.input.justTouched()){
-            if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
-                    && Gdx.input.getY() >= 310 && Gdx.input.getY() <= 400){
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new LevelScreen());
+        	if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
+                    && Gdx.input.getY() >= 325 && Gdx.input.getY() <= 405){
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new Map1());
+            	}
             }
-        }
-        if(Gdx.input.justTouched()){
-            if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
-                    && Gdx.input.getY() >= 410 && Gdx.input.getY() <= 500){
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Options(main));
-            }
-        }
-        if(Gdx.input.justTouched()){
-            if(Gdx.input.getX() >= 220 && Gdx.input.getX() <= 420
-                    && Gdx.input.getY() >= 510 && Gdx.input.getY() <= 600){
-            	System.out.println("hai");
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new Credits(main));
-            }
-        }
     }
 
-    @Override
-    public void resize(int width, int height) {
+	@Override
+	public void resize(int width, int height) {
         viewport.update(width, height);
         stage.getViewport().update(width, height, false);
-    }
+		
+	}
 
-    @Override
-    public void hide() {
+	@Override
+	public void hide() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    }
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public void dispose() {
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    }
 
-    @Override
-    public void pause() {
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    }
-
-    @Override
-    public void resume() {
-
-    }
 }
