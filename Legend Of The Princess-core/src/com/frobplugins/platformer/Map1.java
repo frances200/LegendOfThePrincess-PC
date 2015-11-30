@@ -116,7 +116,7 @@ public class Map1 implements Screen{
 		if(CollisionListener.spikes_werkplek1 || CollisionListener.spikes_werkplek2 || CollisionListener.spikes_keuken1 || 
 				CollisionListener.spikes_keuken2 || CollisionListener.spikes_keuken3 || CollisionListener.spikes_woonkamer1 || 
 					CollisionListener.spikes_woonkamer2 || CollisionListener.spikes_woonkamer3) {
-			((Game) Gdx.app.getApplicationListener()).setScreen(new DeathLevel1(null));
+			((Game) Gdx.app.getApplicationListener()).setScreen(new DeathLevel1(new Main()));
 		}
 		camera.update();
 	}
