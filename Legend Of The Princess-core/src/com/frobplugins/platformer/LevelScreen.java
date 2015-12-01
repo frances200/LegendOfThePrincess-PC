@@ -149,27 +149,32 @@ public class LevelScreen implements Screen,InputProcessor{
 				tmr.getBatch().draw(sprite1, player.getPosition().x - 225, player.getPosition().y - 125);
 			}
 		tmr.getBatch().end();
-		
-		//b2dr.render(world, camera.combined);
 		if(!enableLevel1){
-			if(Gdx.input.isKeyPressed(Keys.A)){
+			if(Gdx.input.isKeyPressed(Keys.LEFT)){
 				player.setLinearVelocity(-100f,0f);
 			}
-			if(Gdx.input.isKeyPressed(Keys.D)){
+			if(Gdx.input.isKeyPressed(Keys.RIGHT)){
 				player.setLinearVelocity(100f,0f);
 			}	
-	        if(Gdx.input.isKeyPressed(Keys.W)){
+	        if(Gdx.input.isKeyPressed(Keys.UP)){
 	        	player.applyForceToCenter(0f,10000f,true);
 			}
-	        if(Gdx.input.isKeyPressed(Keys.S)){
+	        if(Gdx.input.isKeyPressed(Keys.DOWN)){
 	        	player.applyForceToCenter(0f, -10000f, true);
 			}
-	        if(!Gdx.input.isKeyPressed(Keys.S) && !Gdx.input.isKeyPressed(Keys.A) && !Gdx.input.isKeyPressed(Keys.D) && !Gdx.input.isKeyPressed(Keys.W)){
+	        if(!Gdx.input.isKeyPressed(Keys.DOWN) && !Gdx.input.isKeyPressed(Keys.LEFT) && !Gdx.input.isKeyPressed(Keys.RIGHT) && !Gdx.input.isKeyPressed(Keys.UP)){
 	        	player.setLinearVelocity(0, 0);
 	        }
 		}else{
 			if(Gdx.input.isKeyJustPressed(Keys.ENTER)){
-	        	System.out.println("Pressed ENTER");
+				try{
+	        	SoundManager.theme.setLooping(false);
+	        	SoundManager.theme.stop();
+	        	SoundManager.theme.dispose();
+	        	System.out.println(SoundManager.theme.isPlaying());
+				}catch(Exception e){
+					e.printStackTrace();
+				}
 	        	((Game) Gdx.app.getApplicationListener()).setScreen(new Map1());
 	        }
 		}

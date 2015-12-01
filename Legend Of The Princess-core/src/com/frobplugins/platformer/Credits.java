@@ -60,7 +60,7 @@ public class Credits implements Screen{
         stage.draw();
         main.batch.begin();
         	font.draw(main.batch, "Dit spel is gemaakt door", 0, 300);
-        	font.draw(main.batch, " Francesco Gabrielle", 0, 200);
+        	font.draw(main.batch, " Francesco Gabriele", 0, 200);
         	font.draw(main.batch, "[TERUG]", 0, 67);
         main.batch.end();
         clickListener();

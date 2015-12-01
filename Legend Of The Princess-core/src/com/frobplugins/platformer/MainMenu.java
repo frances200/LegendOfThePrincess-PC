@@ -50,9 +50,20 @@ public class MainMenu implements Screen {
         parameter.borderWidth = 2;
         parameter.size = 48;
         font = generator.generateFont(parameter);
-        SoundManager.create();
-        SoundManager.theme.setLooping(true);
+        try{
+        	if(SoundManager.Song_Level1.isPlaying()){
+        		SoundManager.Song_Level1.setLooping(false);
+        		SoundManager.Song_Level1.stop();
+        		SoundManager.Song_Level1.dispose();
+        		SoundManager.create();
+        		SoundManager.theme.play();
+        	}
+        }catch(Exception e){
+        	e.printStackTrace();
+        }
         if(hasStartedTheme == false) {
+        	SoundManager.create();
+            SoundManager.theme.setLooping(true);
         	SoundManager.theme.play();
         	hasStartedTheme=true;
         }
@@ -70,7 +81,6 @@ public class MainMenu implements Screen {
             font.draw(main.batch, "Spelen", 230, 303);
             font.draw(main.batch, "Opties", 230, 208);
             font.draw(main.batch, "Credits", 230, 110);
-            font.draw(main.batch, Gdx.input.getX()+" "+Gdx.input.getY(), 10, 100);
         main.batch.end();
 
         clickListener();

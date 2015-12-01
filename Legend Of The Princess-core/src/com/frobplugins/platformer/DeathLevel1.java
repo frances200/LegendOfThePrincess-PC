@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -26,6 +27,7 @@ public class DeathLevel1 implements Screen{
     private BitmapFont font;
     private FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("arial.ttf"));
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+    private SpriteBatch batch = new SpriteBatch();
 	
 	
     public DeathLevel1(Main main){
@@ -47,7 +49,15 @@ public class DeathLevel1 implements Screen{
         parameter.borderWidth = 2;
         parameter.size = 48;
         font = generator.generateFont(parameter);
-		
+		CollisionListener.spikes_keuken1 = false;
+		CollisionListener.spikes_keuken2 = false;
+		CollisionListener.spikes_keuken3 = false;
+		CollisionListener.spikes_keuken4 = false;
+		CollisionListener.spikes_werkplek1 = false;
+		CollisionListener.spikes_werkplek2 = false;
+		CollisionListener.spikes_woonkamer1 = false;
+		CollisionListener.spikes_woonkamer2 = false;
+		CollisionListener.spikes_woonkamer3 = false;
 	}
 
 	@Override
@@ -58,11 +68,9 @@ public class DeathLevel1 implements Screen{
         stage.getViewport().apply();
         stage.act();
         stage.draw();
-        main.batch.begin();
-        	//font.draw(main.batch, "Geluid", 240, 430);
-        	font.draw(main.batch, "Restart", 220, 300);
-            font.draw(main.batch, Gdx.input.getX()+" "+Gdx.input.getY(), 10, 100);
-        main.batch.end();
+        batch.begin();
+        	font.draw(batch, "Restart", 220, 300);
+        batch.end();
         
         clickListener();
 		

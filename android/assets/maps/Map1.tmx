@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="48">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" nextobjectid="79">
  <tileset firstgid="1" name="rpg_maker_vx_rtp_tileset_by_telles0808" tilewidth="32" tileheight="32" tilecount="2016">
   <image source="rpg_maker_vx_rtp_tileset_by_telles0808.png" width="1024" height="2016"/>
  </tileset>
@@ -22,17 +22,17 @@
  </layer>
  <layer name="Grond/Plafond" width="100" height="100" opacity="0.9">
   <data encoding="base64" compression="zlib">
-   eJzt10FKA0EYBWE3cRd33v8QXlBEBokgzmgnVd1TP3w70TDhFePl5enpEo1rVF6jQu8z9cqM3mfqlRm9z9QrM3qfqVdm9D5Tr8zofaZezW707d3uf+7t+QvdoCOI7+O643d+fLbteX5/zntu+7m+j3G399kfOfp5z/x93OPo551Ps3wf9Pvdo2xHf47ed2+bS3+O39D7rFf1yozeZ72qV2b0PutVvTKj91mv6pXZX3c/063Wq5WO7tGIXq10dI9G9Go7estnsNK7yQpWejdZQb1yqVcu9cqlXrnUKxd6nzneq7h6lXp1VvQ+c85ezfKOSO/zUWb5n5be56PM8j8tvc96Va/M6H3Wq3plRu+zXtUrM3qf9apemdH7rFf1yozeZ72qV2b0PuvV8V7d6y53/N0//R26RyN6tdLRPRrRq5WO7tGIXsXVq7h6lXp1VvQ+U6/M6H2mXpnR+0y9MqP3mXplRu8z9cqM3mfqlRm9z9QrM3qfqVdm9D5Tr8zofaZemdH7TL0yo/eZemVG7zP1yozeZ+qVGb3P1Cszep+59Q5dsOaD
+   eJzt10GKwkAURVEnOtOZ+1+EGxSRoHFiCsvc96vuhzNruiXyLunj5XA4KsZZUa6KQu9T9ioZvU/Zq2T0PmWvktH7lL1KRu9T9ioZvU/Zq+p639bt/nK30wvdoBbE93He8Dsfn215np/PecstP+f30e+2PvuWo5935e/jH0c/bz1V+T7o97u9LEd/Dt93182lP8c39D7tlb1KRu/TXtmrZPQ+7ZW9Skbv01791quKN3KvKt5ovRrp6B716NVIR/eoR6+Wo7c8g5HeTUbQ0it6yzOwV1nsVRZ7lcVeZbFXWeh9qr1XyuqV7NWs6H1qzl5VeUek97mXKv/T0vvcS5X/ael92it7lYzep72yV8nofdore5WM3qe9slfJ6H3aK3uVjN6nvbJXyVq2XvVG69Uez+mf9/536B716NVIR/fIXq2P7pHvV7XQ+1R7r2SvZkXvU/YqGb1P2atk9D5lr5LR+5S9SkbvU/YqGb1P2atk9D5lr5LR+5S9SkbvU/YqGb1P2atk9D5lr5LR+5S9SkbvU/YqGb1P2atk9D5lr5LR+9TaHe/y3jQ=
   </data>
  </layer>
  <layer name="Assets" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt3L1rFEEYx/E1t7vXKdFCLZT7F6KF2qW2i6eF2FhLXtCIIjaK7d3FqLVGAmKhgmfaawW1MgbFN8RGwU4NFtr4G3aG21vvsmKhD+v3Aw8zNzs7u5lnB8LAbhQBAAAAAAAAAIC/abz+r+8AeRPKx+PaYNuTwm93/Hma1V3pfh9TeT3NStf/w1i//8Ha8PpH9Tma/HoPqxrjmWIt3fhez+XOfT82ul8VfNdc/FDsGrFevunY0zQrnfOF8tbmrGzo/BPKwWu1v0mzeqM+2OdRLkc99fmi+KpYz+Vj0Z/zUm2vFC/SwXPdWDO1LKpg05YsRtLf31C8yz2Tnzd4frt+rieH5DO0hT4d/d6tiHX9RDGb9GOhHi25Pq59KRmM4vXatSxgQ5XWRxWwPmxhfdjC+rCF9WEL68MW1octrA9bWB+2sD5sqeL6eOj3SaeG7Dv1cvtVN0r2Xsv0CueH/cJi++9w9+r2d6u0PsKzFfZcg7bb01NcVrR8fcHXO0l2vOX39t5qLg+pfiWOoqZiUvUpleNq3+rnueXH6uTGaefGbueu4fqEvDdVP6xY1HhXFdfi/jWdqu3vhmcr7LmGfdaZ3F7rtGIu6bdP+/qcz4fbnz2leldzNa84rvpJlROasz1+3opjFMedzY3p2hO/5zyv+mnFfY33QLESD95/1fZ3q/RsVQH5sIV82EI+bCEftpAPW8iHLeQDAAAARfyPaAv5sIV82EI+bCEftpAPW8iHLeTDFvJhC/mwhXzYQj5sIR+2kA9byIct5KPcqO/ufPLtl0rm72LJ8XC+e2+FfJQL75PsrQ+Wt337cq3/DaFWGkVtRcd9bymOojXFTR1fjbPYrn47FDvr/e8FLVf0+z5/4kIyOs769z3C+yTNevZtoKaf+5XCez9n1P+O4q7invvekuZ/XXHEfX8pzmKfzt2vOKDYVnh/q0s+AAAAAAAAAAAAAAAAAAAAAAAAAAD/mZ+wVaLF
+   eJzt3L9rFEEYxvE1t7vXKdFCLZT7F6KF2qW2i6eF2KSWxKARRWwU27uLUWuNBMRCBc+01wpqZQyKvxAbBTs1WGjjM+wMt7ve5cRCX9bvB15mbnZ2djPvDoSB3SgCAAAAAAAAAAB/03j9X98B8iaUj8e1YtuT0m93/Hma1V3pfh9TeT3NStf/w1i//8Ha4PpH9Tma/HoPqxrjmWIt3fhez+XOfT82vF8VfNdc/FDsGrJevunY0zQrnfOl8tbmrGzo/OPKwWu1v0mzeqNe7PMol6Oe+nxRfFWs5/Kx6M95qbZXihdp8Vw31mwtiyrYtCWLofT3NxTvcs/k5w2e366f68kB+QxtoU9Hv3crYl0/UZxI+rFQj5ZcH9e+lBSjfL12LQvYUKX1UQWsD1tYH7awPmxhfdjC+rCF9WEL68MW1octrA9bqrg+Hvp90qkB+0693H7VjRF7r6P0SueH/cJy++9w9+r2d6u0PsKzFfZcg7bb01NcVrR8fcHXO0l2vOX39t76ubwSR1FTMan2KZXjat/qj7X8WJ3cOO3c2O3cNVyfkPem6ocVixrvquJaXLxm1fZ3w7MV9lzDPutsbq91RjGX9NtnfD3x+8KHkmj6lKKruZpXTOvYSZUTmrM9ft7KY5THDTHn28PY86qfVtzXeA8UK3Hx/qu2v1ulZ6sKyIct5MMW8mEL+bCFfNhCPmwhHwAAACjjf0RbyIct5MMW8mEL+bCFfNhCPmwhH7aQD1vIhy3kwxbyYQv5sIV82EI+bCEfow377s4n335pxPxdHHE8nO/eWyEfo4X3SfbWi+Vt375c639DqJVGUVvRcd9biqNoTXFTx1fjLLar3w7Fznr/e0HLFf2+z5+4kAyPs/59j/A+SbOefRuo6ed+pfTezxn1v6O4q7jnvrek+V9XHHHfX4qz2Kdz9ysOKLaV3t/qkg8AAAAAAAAAAAAAAAAAAAAAAAAAwH/mJ/rPoxI=
   </data>
  </layer>
  <layer name="extra spikes" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzty7ENAAAEADADs/+/dQOjtHsjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgI+q9yf7fgEAAAAAAAAAAAAAAADgiwFnFgA8
+   eJzt2zEKACAMBMEUWuf/v7US+xAIyEx/cB/YCAAAAAAAAAAAAAAAAHhWTj8AAAAAAAAAAAAAAACgyy60IrcvqWwBAAAAAAAAAAAAAAAA4BcHQe8ATw==
   </data>
  </layer>
  <objectgroup color="#a40000" name="Colliders">
@@ -75,22 +75,22 @@
     <property name="isSensor" value="true"/>
    </properties>
   </object>
-  <object id="16" name="Aanrecht1" type="object" x="1120.97" y="1024.18" width="381.942" height="31.8182">
+  <object id="16" name="Aanrecht1" type="object" x="1120" y="1024.18" width="382.912" height="31.8182">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object id="17" name="Spikes_keuken2" type="object" x="832" y="1040" width="31.9375" height="16">
+  <object id="17" name="Spikes_keuken2" type="object" x="768" y="1040" width="31.9375" height="16">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object id="18" name="Aanrecht2" type="object" x="447.969" y="1024.19" width="352.075" height="31.7812">
+  <object id="18" name="Aanrecht2" type="object" x="447.969" y="1024.19" width="320.031" height="31.7812">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object id="19" name="Spikes_keuken3" type="object" x="415.875" y="1039.94" width="32" height="16">
+  <object id="19" name="Spikes_keuken3" type="object" x="419.25" y="1039.44" width="28.75" height="16">
    <properties>
     <property name="bodyType" value="StaticBody"/>
     <property name="isSensor" value="true"/>
@@ -113,17 +113,17 @@
     <property name="bodyType" value="Stati"/>
    </properties>
   </object>
-  <object id="27" name="Woonkamer" type="object" x="1184" y="2016">
+  <object id="27" name="Woonkamer" type="object" x="1184" y="1994.67">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
-   <polyline points="0,0 0,64 640,64 640,-32 0,-32 0,0"/>
+   <polyline points="0,0 0,85.3333 640,85.3333 640,-42.6667 0,-42.6667 0,0"/>
   </object>
-  <object id="28" name="Keuken" type="object" x="384" y="960">
+  <object id="28" name="Keuken" type="object" x="384" y="928">
    <properties>
     <property name="bodyType" value="StaticB"/>
    </properties>
-   <polyline points="0,0 0,96 1440,96 1440,0 0,0"/>
+   <polyline points="0,0 0,128 1440,128 1440,0 0,0"/>
   </object>
   <object id="30" name="SlaapEnWerkkamer" type="object" x="288" y="480">
    <properties>
@@ -162,6 +162,133 @@
   <object id="47" name="foot" type="fixture" x="356.273" y="554.182" width="24" height="11.5455">
    <properties>
     <property name="body" value="Player"/>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="48" name="Spikes_keuken4" type="object" x="896" y="1040" width="31.9375" height="16">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object id="51" name="Teleport1" type="object" x="1776" y="992">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="52" name="Teleport2" type="object" x="1776" y="1992">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="54" name="kast" type="object" x="848" y="1024" width="48" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Coins">
+  <object id="57" name="Coin" type="object" x="416" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="58" name="Coin1" type="object" x="448" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="59" name="Coin2" type="object" x="480" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="60" name="Coin6" type="object" x="896" y="512" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="61" name="Coin5" type="object" x="864" y="512" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="62" name="Coin10" type="object" x="896" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="63" name="Coin4" type="object" x="832" y="512" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="64" name="Coin3" type="object" x="800" y="512" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="65" name="Coin9" type="object" x="864" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="66" name="Coin8" type="object" x="832" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="67" name="Coin7" type="object" x="800" y="544" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="68" name="Coin11" type="object" x="1072" y="576" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="70" name="Coin12" type="object" x="1360" y="536" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="71" name="Coin13" type="object" x="1520" y="576" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="72" name="Coin14" type="object" x="1632" y="968" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="73" name="Coin15" type="object" x="1240" y="992" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="74" name="Coin16" type="object" x="856" y="992" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="75" name="Coin17" type="object" x="384" y="1024" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="76" name="Coin18" type="object" x="1696" y="2024" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="77" name="Coin19" type="object" x="1280" y="2032" width="32" height="32">
+   <properties>
+    <property name="isSensor" value="true"/>
+   </properties>
+  </object>
+  <object id="78" name="Coin20" type="object" x="1184" y="2048" width="32" height="32">
+   <properties>
     <property name="isSensor" value="true"/>
    </properties>
   </object>

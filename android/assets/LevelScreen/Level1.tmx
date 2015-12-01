@@ -34,7 +34,7 @@
  </layer>
  <layer name="Muur Voorkant" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1DtOG1EYhuEjYQSWAtiIlkvDpSQowtBwWUGABnYANLRQQlhFQpkdJCyMi6Hmo4hEG2vsQfbzSG8x0/znzC+7FAAAAAAAAAAAAODdcrOUlWbdpwAAqnY7XvcJ+Oi3fYys40YpJ426TzFcLsb+7/0/m/kdXmYXV/bxaXSG6L+xO9Gfep3xkB7TU0Wzq7zrIMxN9qdeZ7RSO81WNLvKuw7Ct8n+1OuM9fQ1bVQ0u8q7AgAAAAAAAAAw3J5bpXTTS3pNp+ksnbfqPtlo+tIuZSpNp5l0nT3cpB9pPs8LaTEttes+6WhYzndeSatpLf3MHn6lu7SZ507aStv2MRA7+c67aS/tpz/Zw990n77n+SAdpiP7AAAAAAAAAAAAAAAAAAAYWm+ZnG1U
+   eJzt1DsKwkAUBdABIyadilvQWkV0KboKW+1dihsUcQGOoGDrMPkQz4HbBMJ9j0cSAgAAAAAAAAAAAPAyr0JYVG1PAQDkdhm2PQHfru7xt/ZFCIei7Sn65Tj47fnHNn6Hp3iLs3t0xq5H/8bHqJ6kdtze794zdefctQmzsp6kdoxjJjHTTN05d23CpqwnqR3LmFXMOlN3zl0BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC64Al8eVro
   </data>
  </layer>
  <layer name="Ramen etc" width="100" height="100">
@@ -59,7 +59,7 @@
  </layer>
  <layer name="easter egg muur fix" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0TEKgEAMBMB0d6WKD1Hx/29S8QGmv6sEwWIGtsl2mwgAAAAAAAAAAAAAAAAA+K+jRJyZq7Td3bnxraFGjJmptt3cufGtJTdfM1tn+90/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXnsAir4FMg==
+   eJzt0TEKgDAMBdBs7ajiQVS8/5lEPICFju0kFBzeg08g2X4iAAAAAAAAAAAAAAAAAOC/rlTnndrb09kx1pQj5pIlt7e1s2OsrXS+lxyd7k//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+OwFeqcEOg==
   </data>
  </layer>
  <layer name="easter egg boom fix" width="100" height="100">
